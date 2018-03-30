@@ -1,0 +1,31 @@
+.parallax img {
+    width: 100%;
+} 
+
+
+.color {
+    color: #1FC3B2;
+}
+
+.width-ifo-mycar{
+    width: 27vw;
+    margin: 20px auto;
+    box-sizing: border-box;
+    border-bottom: #4db6ac solid 4px;
+}
+
+.icon-block img{
+    width: 120px;
+    margin: 20px auto;
+}
+
+.padding{
+    padding: 40px;
+}
+
+.icon-block div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}

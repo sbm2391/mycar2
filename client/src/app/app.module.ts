@@ -12,12 +12,19 @@ import { MyPrivatePageComponent } from './my-private-page/my-private-page.compon
 import { routes } from './routes/app.routing'
 import { RouterModule } from '@angular/router';
 
+// materializecss
+import { MaterializeModule } from 'angular2-materialize';
+import { NavPublicComponent } from './nav-public/nav-public.component';
+import { HomeComponent } from './home/home.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     AuthLoginComponent,
     AuthSignupComponent,
-    MyPrivatePageComponent
+    MyPrivatePageComponent,
+    NavPublicComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
