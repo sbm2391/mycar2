@@ -5,7 +5,7 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const cors           = require("cors");
-const authController = require("./routes/authController");
+const auth           = require("./routes/auth");
 const session        = require("express-session");
 const passport       = require("passport");
 
@@ -14,7 +14,7 @@ const app            = express();
 
 // Mongoose configuration
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/angular-authentication")
+mongoose.connect("mongodb://localhost/mycar")
   .then(console.log("Connected to DB!!"))
 
 // Session
@@ -46,7 +46,7 @@ app.use(session({
 require("./config/passport")(passport,app);
 
 
-app.use('/api', authController);
+app.use('/api', auth);
 app.all('/*', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
