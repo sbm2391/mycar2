@@ -8,14 +8,13 @@ import { SessionService } from "../services/session.service";
 })
 export class MyPrivatePageComponent implements OnInit {
   username: string = "";
-  secret: string = "";
+
 
   constructor(private session: SessionService) { }
 
   ngOnInit() {
     this.session.loggedIn()
       .subscribe(user => {
-        this.secret = user.secret;
         this.username = user.username;
       });
   }
