@@ -17,7 +17,6 @@ exports.deleteUser = (req,res,next)=>{
 //   }
   
   exports.patchUser = (req,res,next)=>{
-    console.log("entrando a modificar usuario")
       User.findByIdAndUpdate(req.params.id, req.body, {new:true})
     .then(item=>res.status(200).json(item))
     .catch(e=>res.status(500).send(e));

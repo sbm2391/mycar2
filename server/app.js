@@ -5,10 +5,14 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const cors           = require("cors");
-const auth           = require("./routes/auth");
 const session        = require("express-session");
 const passport       = require("passport");
+
+const auth           = require("./routes/auth");
 const user           = require("./routes/user");
+const car            = require("./routes/car");
+const parking        = require("./routes/parking");
+const order          = require("./routes/order");
 
 const app            = express();
 
@@ -49,6 +53,9 @@ require("./config/passport")(passport,app);
 
 app.use('/api', auth);
 app.use('/api/user', user);
+app.use('/api/car', car);
+app.use('/api/parking', parking);
+app.use('/api/order', order);
 
 app.all('/*', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
