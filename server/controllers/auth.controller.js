@@ -4,7 +4,7 @@ const bcrypt         = require("bcrypt");
 const bcryptSalt     = 19;
 
 exports.signup = (req, res, next) => {
-        if (!req.body.username || !req.body.password || !req.body.name) {
+        if (!req.body.username || !req.body.password || !req.body.name || !req.body.familyName || !req.body.email || !req.body.phone) {
             res.status(400).json({ message: "Provide all the fields to sign up" 
         });
     }
@@ -21,7 +21,14 @@ exports.signup = (req, res, next) => {
         let newUser  = new User({
           username:req.body.username,
           password: hashPass,
-          name:req.body.name
+          name:req.body.name,
+          familyName: req.body.familyName,
+          email: req.body.email,
+          phone: req.body.phone
+          // location:{
+          //   address:req.body.address,
+          //   coordinates: [req.body.lat, req.body.lng]
+          // },
         });
     
         console.log(newUser);

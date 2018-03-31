@@ -13,9 +13,11 @@ const userSchema = new Schema({
   profilePic        : { type: String, default: "images/user-icon.png" },
   phone             : { type: Number},
   location          : {
-    type            : {type: String},
-    adress          : {type: String},
-    coordinates     : {type: [Number]}
+    type            : {type: String, default:'Point'},
+    address          : {type: String, default:'WeWork Insurgentes Sur 601' },
+    coordinates     : {
+      type: [Number],
+      default:[19.3978285, -99.1729289]}
   },
   card              : {
     name            : {type: String},
