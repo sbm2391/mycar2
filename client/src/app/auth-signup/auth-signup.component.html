@@ -1,15 +1,53 @@
-<h1> Authentication Sample </h1>
-<form (ngSubmit)="sendSignupForm(myForm)" #myForm="ngForm">
-  <h2> Signup </h2>
-  <label> Username </label>
-  <input type="text" [(ngModel)]="username" name="username"/>
-  <br>
-  <label> Password </label>
-  <input type="password" [(ngModel)]="password" name="password"/>
-  <br>
-  <label> Name </label>
-  <input type="text" [(ngModel)]="name" name="name"/>
-  <br>
-  <button type="submit"> login </button>
-</form>
-<p class="error"> {{ error }} </p>
+<app-nav-public></app-nav-public>
+<div class="container">
+<div class="row">
+  <div class="container">
+      <div class="container">
+    <form class="col s12" (ngSubmit)="sendSignupForm(myForm)" #myForm="ngForm">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="name" [(ngModel)]="name" name="name">
+          <label>Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="familyName" [(ngModel)]="familyName" name="familyName">
+          <label>Family name</label>
+        </div>
+        </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="username" [(ngModel)]="username" name="username">
+          <label>Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="email" id="email" [(ngModel)]="email" name="email">
+          <label>Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="tel" id="phone" [(ngModel)]="phone" name="phone">
+          <label>Phone</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" [(ngModel)]="password" name="password">
+          <label>Password</label>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit">
+       Sign In
+      </button>
+    </form>
+  </div>
+  </div>
+    <p class="error"> {{ error }} </p>
+  </div>
+</div>
+<app-footer></app-footer>
+
