@@ -11,7 +11,11 @@ exports.getParkings = function(req, res, next) {
   
 exports.postParking = (req, res, next)=>{
 const newParking = new Parking({
-    _cars : req.body._cars
+    _cars : req.body._cars,
+    location: {
+    address: req.body.location.address,
+    coordinates: req.body.location.coordinates
+    }
 });
 
 newParking.save()

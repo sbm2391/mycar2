@@ -24,11 +24,11 @@ exports.signup = (req, res, next) => {
           name:req.body.name,
           familyName: req.body.familyName,
           email: req.body.email,
-          phone: req.body.phone
-          // location:{
-          //   address:req.body.address,
-          //   coordinates: [req.body.lat, req.body.lng]
-          // },
+          phone: req.body.phone,
+          location: {
+            address: req.body.location.address,
+            coordinates: req.body.location.coordinates
+            }
         });
     
         console.log(newUser);

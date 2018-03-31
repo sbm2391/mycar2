@@ -13,7 +13,11 @@ const newCar = new Car({
     year: req.body.year,
     price: req.body.price,
     gadges: req.body.gadges,
-    img: `/images/cars/${req.body.img}`
+    img: `/images/cars/${req.body.img}`,
+    location: {
+        address: req.body.location.address,
+        coordinates: req.body.location.coordinates
+        }
 });
 
 newCar.save()
