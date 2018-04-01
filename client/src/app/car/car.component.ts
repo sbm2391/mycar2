@@ -40,7 +40,7 @@ export class CarComponent implements OnInit {
       this.cars = car;
     });
   }
-  
+
   datePicker() {
     $(document).ready(function(){
     $('.datepicker').pickadate({
@@ -88,6 +88,10 @@ export class CarComponent implements OnInit {
     var d = R * c;
     this.km = d.toFixed(2); //Retorna tres decimales
     return this.km;
+  }
+
+  sendDateForm(myForm) {
+    console.log(myForm.value)
   }
 
 }

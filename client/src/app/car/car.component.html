@@ -26,29 +26,27 @@
             <div class="info-car">
                 <p>${{car.price}}.00 / hr</p>
             </div>
-            <div class="info-car">
-                <button class="btn waves-effect waves-light" 
-                 type="submit">Reserve</button>
-            </div>
           </div>
           <div class="card-action">
             <div class="row">
               <p>When do you want to reserve your car?</p>
-                <form class="col s12 m12">
+                <form class="col s12 m12" (ngSubmit)="sendDateForm(myForm)" #myForm="ngForm">
                   <div class="row">
                     <div class="input-field col s3 m3">
-                        <input type="date" class="datepicker" placeholder="Pick start date">
+                        <input type="date" class="datepicker" placeholder="Pick start date" [(ngModel)]="startDate" name="startDate">
                     </div>
                     <div class="input-field col s3 m3">
-                        <input type="text" class="timepicker" placeholder="Pick start hour">
+                        <input type="text" class="timepicker" placeholder="Pick start hour" [(ngModel)]="endDate" name="endDate">
                     </div>
                       <div class="input-field col s3 m3">
-                          <input type="date" class="datepicker" placeholder="Pick end date">
+                          <input type="date" class="datepicker" placeholder="Pick end date" [(ngModel)]="startHour" name="startHour">
                       </div>
                       <div class="input-field col s3 m3">
-                          <input type="text" class="timepicker" placeholder="Pick end hour">
+                          <input type="text" class="timepicker" placeholder="Pick end hour" [(ngModel)]="endHour" name="endHour">
                       </div>
                     </div>
+                    <button class="btn waves-effect waves-light" 
+                 type="submit">Reserve</button>
                 </form>
               </div>
           </div>
