@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
-import { FileUploader } from 'ng2-file-upload';
+//import { FileUploader } from 'ng2-file-upload';
 // agm
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
@@ -18,10 +18,6 @@ export class AuthSignupComponent implements OnInit {
    // maps
    @ViewChild('search')
    public searchElementRef: ElementRef;
-// por defecto hace una llamada post a nuestro back-end
-uploader: FileUploader = new FileUploader({
-  url: 'http://localhost:3000/api/auth/signup'
-});
 
   constructor(
     private sessionService : SessionService, 
@@ -31,33 +27,18 @@ uploader: FileUploader = new FileUploader({
   ) { }
 
   ngOnInit() {
-    this.getReadyAutocomplete();
+    //this.getReadyAutocomplete();
   }
-  sendsignup(newUser) {
-    console.log(newUser.value);
-    this.uploader.onBuildItemForm = (item: any, form: any) => {
-      form.append('username', newUser.value.username);
-      form.append('name', newUser.value.name);
-      form.append('familyName', newUser.value.familyName);
-      form.append('email', newUser.value.email);
-      form.append('phone', newUser.value.phone);
-      // form.append('location.address', newUser.value.address);
-      // form.append('location.coordinates', this.coordinates);
-      form.append('password', newUser.value.password);
-    };
 
-   
-    console.log('subiendo');
-    this.uploader.uploadAll(); // post Call to Url
-    this.uploader.onCompleteItem = () => this.router.navigate(['private']); // como el subscribe el onCompleteItem
+// desabilite en mi controler
+  sendSignupForm(myForm) {
+    console.log(myForm.value);
+    this.sessionService.signup(myForm.value)
+      .subscribe(() => {
+        this.router.navigate(['private'])
+      });
   }
-  // sendSignupForm(myForm) {
-  //   console.log(myForm.value);
-  //   this.sessionService.signup(myForm.value)
-  //     .subscribe(() => {
-  //       this.router.navigate(['private'])
-  //     });
-  // }
+
   getReadyAutocomplete() {
     // load Places Autocomplete
     this.mapsAPILoader.load()

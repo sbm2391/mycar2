@@ -1,3 +1,27 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+<section class="section-padding #eeeeee grey lighten-3">
+  <div class="flex-row">
+    <div class="container">
+        <div class="col width-five">
+          <div class="card">
+            <div class="card-image card-map-padding">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                  <agm-marker [latitude]="lat" [longitude]="lng">
+                  </agm-marker>
+                  <!-- car markers -->
+                  <agm-marker *ngFor="let parking of parkings" [iconUrl]="'../../assets/images/marker.png'" [latitude]="parking.location.coordinates[0]" [longitude]="parking.location.coordinates[1]">
+                      <agm-info-window>
+                        <p class="adress"><strong>{{parking.location.address}} ({{getDistance(parking.location.coordinates[0], parking.location.coordinates[1])}} Km)</strong></p>
+                        <div *ngFor="let car of parking._cars">
+                            <span><b>- {{car.marca}} </b></span>
+                            <span>{{car.modelo}} </span>
+                            <span>({{car.year}}) </span>
+                        </div>
+                      </agm-info-window>
+                  </agm-marker><!-- car markers -->
+                </agm-map>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>

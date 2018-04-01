@@ -2,7 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+// services
 import { SessionService } from './services/session.service';
+import { ParkingService } from './services/parking.service';
+import { CarService } from './services/car.service';
+import { OrderService } from './services/order.service';
 
 import { AppComponent } from './app.component';
 import { AuthLoginComponent } from './auth-login/auth-login.component';
@@ -20,6 +25,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MapComponent } from './map/map.component';
 // google maps
 import { AgmCoreModule } from '@agm/core';
+import { NavPrivateComponent } from './nav-private/nav-private.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +37,9 @@ import { AgmCoreModule } from '@agm/core';
     NavPublicComponent,
     HomeComponent,
     FooterComponent,
-    MapComponent
+    MapComponent,
+    NavPrivateComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +51,12 @@ import { AgmCoreModule } from '@agm/core';
       libraries: ['places']
     })
   ],
-  providers: [SessionService],
+  providers: [
+    SessionService,
+    ParkingService,
+    CarService,
+    OrderService 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

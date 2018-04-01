@@ -1,0 +1,17 @@
+
+
+input {
+    margin: 20px auto;
+    }
+    
+    .size-inputs{
+        width: 30vw;
+    }
+    
+    .container {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        height: 87vh;
+    }
+    

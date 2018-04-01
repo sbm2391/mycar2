@@ -1,3 +1,71 @@
 agm-map {
     height: 300px;
   }
+
+  .section-padding{
+    padding: 20px;
+}
+
+.width-five{
+    width: 50vw;
+    margin: 0 auto;
+}
+
+agm-map {
+    height: 300px;
+  
+  }
+
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-car{
+    width: 12vw;
+    text-align: center;
+}
+
+.margin-img {
+    margin: 0 10px;
+}
+
+.card-image img{
+    width: 80px;
+}
+.container-gadges{
+    margin: 10px 0 0 0;
+    border: #eeeeee solid 1px;
+    border-radius: 10px;
+    padding: 0 5px;
+}
+.container-gadges div{
+    margin: 2px;
+}
+.address{
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 0.8rem;
+    
+}
+.address strong{
+    color: #4db6ac;
+}
+.card-map-padding{
+    padding: 20px;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
