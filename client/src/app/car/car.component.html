@@ -1,0 +1,40 @@
+<div class="card-content">
+    <!-- despliegue de coches -->
+    <p><b>Cars are shown in a {{maxKm}}km radius</b></p>
+    
+    <div *ngFor="let car of cars">
+      <div class="card horizontal" *ngIf="getDistance(car.location.coordinates[0], car.location.coordinates[1]) <= maxKm">
+        <div class="card-image flex-column">
+          <img class="margin-img" src="http://localhost:3000/{{car.img}}">
+          <p class="address"><strong>{{car.location.address}}</strong></p>
+          <p class="address">({{getDistance(car.location.coordinates[0], car.location.coordinates[1])}} Km)</p>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content flex-row">
+            <div class="info-car flex-column">
+              <div>
+                <span><b>{{car.marca}} </b></span>
+                <span>{{car.modelo}} </span>
+                <span>({{car.year}}) </span>
+              </div>
+              <div class="flex-row container-gadges">
+                <div *ngFor="let gadge of car.gadges">
+                    <img src="http://localhost:3000/{{gadge}}" alt="item car">
+                </div>
+              </div>
+            </div>
+            <div class="info-car">
+                <p>${{car.price}}.00 / hr</p>
+            </div>
+            <div class="info-car">
+                <button class="btn waves-effect waves-light" 
+                 type="submit">Reserve</button>
+            </div>
+          </div>
+          <div class="card-action">
+            <p><b>Adjust your times by moving the ends of the slider:</b></p>
+          </div>
+        </div>
+      </div><!-- /despliegue de coches -->
+    </div>
+  </div>

@@ -27,6 +27,7 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { NavPrivateComponent } from './nav-private/nav-private.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CarComponent } from './car/car.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ProfileComponent } from './profile/profile.component';
     FooterComponent,
     MapComponent,
     NavPrivateComponent,
-    ProfileComponent
+    ProfileComponent,
+    CarComponent
   ],
   imports: [
     BrowserModule,
