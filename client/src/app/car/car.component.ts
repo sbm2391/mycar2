@@ -16,6 +16,8 @@ export class CarComponent implements OnInit {
   //termina- poner despues padre e hijo
   maxKm= 3;
   km;
+  today = Date.now();
+
   constructor(
     private carService: CarService,
     private sessionService: SessionService
