@@ -8,6 +8,7 @@ const carSchema = new Schema({
   gadges            : [{ type: String }],
   price             : { type: Number },
   img               : { type: String },
+  index             : { type: Number},
   location          : {
     type            : {type: String, default:"Point"},
     address          : {type: String, default:"WeWork Insurgentes Sur 601" },

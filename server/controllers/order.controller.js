@@ -12,6 +12,7 @@ exports.getOrders = function(req, res, next) {
 
 exports.postOrder = (req, res, next)=>{
     // hours
+    console.log(req.body)
     var result = moment(req.body.endDate,"YYYY-MM-DD HH:mm:ss" ).diff(req.body.startDate,"YYYY-MM-DD HH:mm:ss" )
     var hours = moment.duration(result);
     var finalResult = hours.asHours();

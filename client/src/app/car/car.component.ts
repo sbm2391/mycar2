@@ -62,11 +62,13 @@ export class CarComponent implements OnInit {
   }
 
   sendDateForm(myForm, carId, carPrice) {
+    console.log(myForm.value)
     const newOrder = {
       startDate: myForm.value.startDate,
       endDate: myForm.value.endDate,
       _car             : carId
     }
+    console.log(newOrder)
     this.orderService.addItem(newOrder)
     .subscribe(order => {
       console.log(order)

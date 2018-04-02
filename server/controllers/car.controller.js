@@ -7,22 +7,26 @@ exports.getCars = function(req, res, next) {
   }
   
 exports.postCar = (req, res, next)=>{
-const newCar = new Car({
-    marca: req.body.marca,
-    modelo: req.body.modelo,
-    year: req.body.year,
-    price: req.body.price,
-    gadges: req.body.gadges,
-    img: `/images/cars/${req.body.img}`,
-    location: {
-        address: req.body.location.address,
-        coordinates: req.body.location.coordinates
-        }
-});
-
-newCar.save()
-.then(item=>res.status(201).json(item))
-.catch(e=>res.status(500).send(e));
+    Car.find()
+        .then(carList => {
+            const newCar = new Car({
+                marca: req.body.marca,
+                modelo: req.body.modelo,
+                year: req.body.year,
+                price: req.body.price,
+                gadges: req.body.gadges,
+                index: carList.length + 1,
+                img: `/images/cars/${req.body.img}`,
+                location: {
+                    address: req.body.location.address,
+                    coordinates: req.body.location.coordinates
+                    }
+            });
+            
+            newCar.save()
+            .then(item=>res.status(201).json(item))
+            .catch(e=>res.status(500).send(e));
+        })
 
 }
 

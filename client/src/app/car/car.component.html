@@ -2,7 +2,7 @@
     <!-- despliegue de coches -->
     <p><b>Cars are shown in a {{maxKm}}km radius</b></p>
     
-    <div *ngFor="let car of cars">
+    <div *ngFor="let car of cars  ; let i=index">
       <div class="card horizontal" *ngIf="getDistance(car.location.coordinates[0], car.location.coordinates[1]) <= maxKm">
         <div class="card-image flex-column">
           <img class="margin-img" src="http://localhost:3000/{{car.img}}">
@@ -33,10 +33,10 @@
                 <form class="col s12 m12" (ngSubmit)="sendDateForm(myForm, car._id, car.price)" #myForm="ngForm">
                   <div class="row">
                     <div class="input-field col s6 m6">
-                        <input type="datetime-local" placeholder="Pick start date" [(ngModel)]="startDate" name="startDate">
+                        <input type="datetime-local" placeholder="Pick start date" [(ngModel)]="start-car.index" name="startDate">
                     </div>
                       <div class="input-field col s6 m6">
-                          <input type="datetime-local" placeholder="Pick end date" [(ngModel)]="endDate" name="endDate">
+                          <input type="datetime-local" placeholder="Pick end date" [(ngModel)]="end-car.index" name="endDate">
                       </div>
                     </div>
                     <button class="btn waves-effect waves-light" 
