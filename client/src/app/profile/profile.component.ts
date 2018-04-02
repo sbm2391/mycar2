@@ -3,6 +3,7 @@ import { SessionService } from '../services/session.service';
 import { ActivatedRoute, Router} from '@angular/router';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-profile',
@@ -27,6 +28,10 @@ longitude: number;
 @ViewChild('search')
 public searchElementRef: ElementRef;
 
+// file uploader
+uploader= new FileUploader({
+    
+});
   constructor(
     private sessionService: SessionService,
     private route: ActivatedRoute,
@@ -42,6 +47,7 @@ public searchElementRef: ElementRef;
     this.sessionService.loggedIn()
     .subscribe(user => {
       this.user = user;
+      this.uploader.options.url = `http://localhost:3000/api/user/${this.user._id}/addimg`;
     });
   }
   sendModification(){
@@ -55,6 +61,13 @@ public searchElementRef: ElementRef;
     this.showEditEmail = false;
     this.showEditPhone = false;
     this.showEditAddress = false;
+  }
+  updatePhoto() {
+    this.uploader.queue[0].method="PATCH"
+      console.log("voy a subir archivo")
+      //form es un objeto interno de la instancia FileUploader
+    this.uploader.uploadAll();
+    this.uploader.onCompleteItem = () => this.router.navigate(['/private']);
   }
 
   getReadyAutocomplete() {

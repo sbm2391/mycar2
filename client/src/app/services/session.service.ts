@@ -52,4 +52,13 @@ export class SessionService {
     })
   }
 
+  fetchItem(item):Observable<any>{
+      return this.http.patch(`${this.base_URL}/user/`+ item._id, item)
+      .map((res:Response)=>res.json())
+      .map(item=>item)
+      .catch(e=>{
+        console.log(e);
+        return Observable.throw(e);
+      })
+    }
 }

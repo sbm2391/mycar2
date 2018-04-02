@@ -8,17 +8,21 @@ import { SessionService } from '../services/session.service';
 })
 export class BoardComponent implements OnInit {
 user;
+userId;
 
   constructor(private sessionService: SessionService) { }
 
   ngOnInit() {
+
     this.getUser();
    }
+   
    getUser() {
-     this.sessionService.loggedIn()
-     .subscribe(user => {
-       this.user = user;
-     });
-   }
+    this.sessionService.loggedIn()
+    .subscribe(user => {
+      this.user = user;
+    });
+
+  }
 
 }

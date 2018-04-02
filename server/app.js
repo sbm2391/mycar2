@@ -8,6 +8,7 @@ const cors           = require("cors");
 const session        = require("express-session");
 const passport       = require("passport");
 
+// Routes
 const auth           = require("./routes/auth");
 const user           = require("./routes/user");
 const car            = require("./routes/car");

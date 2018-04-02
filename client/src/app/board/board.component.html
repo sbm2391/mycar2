@@ -1,1 +1,50 @@
 <app-nav-private></app-nav-private>
+<p *ngIf="user">{{user._orders | json}}</p>
+
+<!-- <section *ngIf="user" class="section-padding #eeeeee grey lighten-3">
+    <div class="flex-row">
+      <div class="container">
+        <h5>Your reservations: </h5>
+        <div *ngFor="let order of user._orders" class="col s12 m6">
+            <div class="col s12 m7">
+                <div class="card horizontal">
+                    <div class="card-image flex-column">
+                      <img class="margin-img" src="http://localhost:3000/{{order._car.img}}">
+                    </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <p><b>Car information: </b></p>
+                        <div>
+                          <span><b>{{order._car.marca}} </b></span>
+                          <span>{{order._car.modelo}} </span>
+                          <span>({{order._car.year}}) </span>
+                        </div>
+                        <div>
+                        <p><b>Your reservation information: </b></p>
+                        <p><b>Car location:</b> {{order._car.location.adress}</p>
+                        </div>  
+                    </div>
+                    <hr>
+                    <div class="card-action">
+                      <div class="billing">
+                        <div class="flex-row">
+                          <div>
+                            <p ><b>Billing: </b></p>
+                            <p class="address"><b>Total hours: </b>{{order.hour}}/hr</p>
+                            <p class="address"><b>Total to pay: </b>{{order.total}}/hr</p>
+                          </div>
+                          <div *ngIf="order.paid === true" class="info">
+                            <a class="btn waves-effect waves-light" href="/private/pay">Pay</a>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>          
+        </div>  
+      </div>
+    </div>
+  </section> -->
+  <app-footer></app-footer>
