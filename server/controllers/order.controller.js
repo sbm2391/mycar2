@@ -8,7 +8,7 @@ exports.getOrders = function(req, res, next) {
     .then(items=>res.status(200).json(items))
     .catch(e=>res.status(500).send(e));
   }
-  
+
 exports.postOrder = (req, res, next)=>{
 const newOrder = new Order({
     startDate: req.body.startDate,
@@ -16,7 +16,7 @@ const newOrder = new Order({
     // hour: req.body.hour,
     total: req.body.total,
     _car : req.body._car,
-    // _creator : req.user._id
+    // _creator : req.body._creator
 });
 
 newOrder.save()

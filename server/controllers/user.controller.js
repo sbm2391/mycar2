@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const Order = require("../models/Order");
+const Car = require("../models/Car");
 
 exports.deleteUser = (req,res,next)=>{
     User.findByIdAndRemove(req.params.id)
@@ -15,6 +17,19 @@ exports.deleteUser = (req,res,next)=>{
 //     .then(item=>res.status(200).json(item))
 //     .catch(e=>res.status(500).send(e));
 //   }
+exports.getUser = function(req, res, next) {
+  User.findById(req.params.id)
+  .populate({
+    path: '_orders',
+    model: 'Order',
+    populate: {
+      path: '_car',
+      model: 'Car'
+    }
+  })
+    .then(item=>res.status(200).json(item))
+    .catch(e=>res.status(500).send(e));
+}
   
   exports.patchUser = (req,res,next)=>{
       User.findByIdAndUpdate(req.params.id, req.body, {new:true})
