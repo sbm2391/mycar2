@@ -34,6 +34,7 @@ import { BoardComponent } from './board/board.component';
 
 // upload images
 import { FileUploadModule } from 'ng2-file-upload';
+import { SearchLocationComponent } from './search-location/search-location.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     NavPrivateComponent,
     ProfileComponent,
     CarComponent,
-    BoardComponent
+    BoardComponent,
+    SearchLocationComponent
   ],
   imports: [
     BrowserModule,
