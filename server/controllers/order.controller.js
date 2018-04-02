@@ -1,5 +1,6 @@
 const Order = require("../models/Order");
 const Car = require("../models/Car");
+const User = require('../models/User');
 
 exports.getOrders = function(req, res, next) {
     Order.find()
@@ -14,7 +15,8 @@ const newOrder = new Order({
     endDate: req.body.endDate,
     // hour: req.body.hour,
     total: req.body.total,
-    _car : req.body._car
+    _car : req.body._car,
+    // _creator : req.user._id
 });
 
 newOrder.save()

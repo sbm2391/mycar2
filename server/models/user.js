@@ -22,7 +22,8 @@ const userSchema = new Schema({
     number          : {type: Number},
     deadline        : {type: Date},
     cvv             : {type: Number}
-  }
+  },
+  _orders                : [{type: Schema.Types.ObjectId, ref: 'Order' }]
 }, {
   timestamps: {
     createdAt: "created_at",

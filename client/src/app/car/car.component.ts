@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarService } from '../services/car.service';
 import { SessionService } from '../services/session.service';
 import { OrderService } from '../services/order.service';
-declare var jquery:any;   // not required
-declare var $ :any;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-car',
@@ -24,7 +23,8 @@ export class CarComponent implements OnInit {
   constructor(
     private carService: CarService,
     private sessionService: SessionService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -71,6 +71,7 @@ export class CarComponent implements OnInit {
     this.orderService.addItem(newOrder)
     .subscribe(order => {
       console.log(order)
+      this.router.navigate(['orders'])
     })
   }
 

@@ -8,7 +8,8 @@ const orderSchema = new Schema({
     hour             : { type: Number},
     total            : { type: Number},
     paid             : { type: Boolean, default: false},
-    _car             : { type: Schema.Types.ObjectId, ref: 'Car'} 
+    _car             : { type: Schema.Types.ObjectId, ref: 'Car'},
+    // _creator         :   { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 const Order = mongoose.model("Order", orderSchema);

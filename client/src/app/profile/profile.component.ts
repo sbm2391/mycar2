@@ -13,10 +13,12 @@ user;
   ) { }
 
   ngOnInit() {
-    this.sessionService.loggedIn()
-      .subscribe(user => {
-        this.user = user;
-      });
+   this.getUser();
   }
-
+  getUser() {
+    this.sessionService.loggedIn()
+    .subscribe(user => {
+      this.user = user;
+    });
+  }
 }
