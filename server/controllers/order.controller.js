@@ -1,6 +1,7 @@
 const Order = require("../models/Order");
 const Car = require("../models/Car");
 const User = require('../models/User');
+const moment = require('moment');
 
 exports.getOrders = function(req, res, next) {
     Order.find()
@@ -10,19 +11,29 @@ exports.getOrders = function(req, res, next) {
   }
 
 exports.postOrder = (req, res, next)=>{
-const newOrder = new Order({
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
-    // hour: req.body.hour,
-    total: req.body.total,
-    _car : req.body._car,
-    // _creator : req.body._creator
-});
+    // hours
+    var result = moment(req.body.endDate,"YYYY-MM-DD HH:mm:ss" ).diff(req.body.startDate,"YYYY-MM-DD HH:mm:ss" )
+    var hours = moment.duration(result);
+    var finalResult = hours.asHours();
+    finalResult = Math.round(finalResult)
 
-newOrder.save()
-.then(item=>res.status(201).json(item))
-.catch(e=>res.status(500).send(e));
+    Car.findById(req.body._car)
+    .then(car => {
+        const newOrder = new Order({
+            startDate: req.body.startDate,
+            endDate: req.body.endDate,
+            hour: finalResult,
+            total: finalResult * car.price,
+            _car : req.body._car
+            // _creator : req.body._creator
+        });
 
+        newOrder.save()
+        .then(item=>{
+            res.status(201).json(item)
+        })
+        .catch(e=>res.status(500).send(e));
+      })
 }
 
 exports.patchOrder = (req,res,next)=>{

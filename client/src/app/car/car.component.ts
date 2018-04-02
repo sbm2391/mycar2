@@ -65,7 +65,6 @@ export class CarComponent implements OnInit {
     const newOrder = {
       startDate: myForm.value.startDate,
       endDate: myForm.value.endDate,
-      total            : carPrice,
       _car             : carId
     }
     this.orderService.addItem(newOrder)
