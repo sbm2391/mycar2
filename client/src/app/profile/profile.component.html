@@ -46,7 +46,7 @@
                 <p>Phone: {{user.phone}} <span class="edit" (click)="showEditPhone=true">edit</span></p>
               </div>
               <div *ngIf="showEditPhone">
-                <input (keydown.enter)="sendModification()" type="number" [(ngModel)]="user.phone">
+                <input (keydown.enter)="sendModification()" type="tel" [(ngModel)]="user.phone">
               </div>
                <!-- adress -->
               <div *ngIf="!showEditAddress">

@@ -33,7 +33,17 @@ export class AuthSignupComponent implements OnInit {
 // desabilite en mi controler
   sendSignupForm(myForm) {
     console.log(myForm.value);
-    this.sessionService.signup(myForm.value)
+    const newUser = {
+      name: myForm.value.name,
+      familyName: myForm.value.familyName,
+      username: myForm.value.username,
+      email: myForm.value.email,
+      phone: myForm.value.phone,
+      password: myForm.value.password
+    }
+
+    console.log(newUser)
+    this.sessionService.signup(newUser)
       .subscribe(() => {
         this.router.navigate(['private'])
       });
