@@ -27,7 +27,7 @@ export class AuthSignupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.getReadyAutocomplete();
+    this.getReadyAutocomplete();
   }
 
 // desabilite en mi controler
@@ -39,7 +39,11 @@ export class AuthSignupComponent implements OnInit {
       username: myForm.value.username,
       email: myForm.value.email,
       phone: myForm.value.phone,
-      password: myForm.value.password
+      password: myForm.value.password,
+      location: {
+        address: myForm.value.address,
+        coordinates: this.coordinates
+      }
     }
 
     console.log(newUser)
