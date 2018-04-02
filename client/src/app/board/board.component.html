@@ -1,7 +1,7 @@
 <app-nav-private></app-nav-private>
-<p *ngIf="user">{{user._orders | json}}</p>
+<!-- <p *ngIf="user">{{user | json}}</p> -->
 
-<!-- <section *ngIf="user" class="section-padding #eeeeee grey lighten-3">
+<section *ngIf="user" class="section-padding #eeeeee grey lighten-3">
     <div class="flex-row">
       <div class="container">
         <h5>Your reservations: </h5>
@@ -21,7 +21,7 @@
                         </div>
                         <div>
                         <p><b>Your reservation information: </b></p>
-                        <p><b>Car location:</b> {{order._car.location.adress}</p>
+                        <p><b>Car location:</b> {{order._car.location.address}}</p>
                         </div>  
                     </div>
                     <hr>
@@ -30,6 +30,7 @@
                         <div class="flex-row">
                           <div>
                             <p ><b>Billing: </b></p>
+                            <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>
                             <p class="address"><b>Total hours: </b>{{order.hour}}/hr</p>
                             <p class="address"><b>Total to pay: </b>{{order.total}}/hr</p>
                           </div>
@@ -46,5 +47,5 @@
         </div>  
       </div>
     </div>
-  </section> -->
+  </section>
   <app-footer></app-footer>

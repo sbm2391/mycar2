@@ -20,7 +20,7 @@ exports.deleteUser = (req,res,next)=>{
   }
 
 exports.getUser = function(req, res, next) {
-  User.findById(req.params.id)
+  User.findById(req.user._id)
   .populate({
     path: '_orders',
     model: 'Order',

@@ -52,8 +52,8 @@ export class SessionService {
     })
   }
 
-  fetchItem(item):Observable<any>{
-      return this.http.patch(`${this.base_URL}/user/`+ item._id, item)
+  fetchItem():Observable<any>{
+      return this.http.get(`${this.base_URL}/user/profile`, this.options)
       .map((res:Response)=>res.json())
       .map(item=>item)
       .catch(e=>{

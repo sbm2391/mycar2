@@ -18,7 +18,7 @@ handleError(e) {
   }
 
   addItem(item){
-    return this.http.post(`${this.base_URL}/order`, item)
+    return this.http.post(`${this.base_URL}/order`, item, this.options)
       .map(res => res.json())
       .catch(err=>this.handleError(err));
   }

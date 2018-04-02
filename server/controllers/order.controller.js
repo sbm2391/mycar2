@@ -24,13 +24,15 @@ exports.postOrder = (req, res, next)=>{
             endDate: req.body.endDate,
             hour: finalResult,
             total: finalResult * car.price,
-            _car : req.body._car
-            // _creator : req.body._creator
+            _car : req.body._car,
+            _creator : req.user._id
         });
 
         newOrder.save()
-        .then(item=>{
-            res.status(201).json(item)
+        .then(newOrderCreated=>{
+            User.findByIdAndUpdate(req.user._id,
+                {$push: {_orders: newOrderCreated._id } }, {'new': true})
+            .then(userUpdated => res.status(201).json(userUpdated))
         })
         .catch(e=>res.status(500).send(e));
       })

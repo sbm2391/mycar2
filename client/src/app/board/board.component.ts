@@ -18,7 +18,7 @@ userId;
    }
    
    getUser() {
-    this.sessionService.loggedIn()
+    this.sessionService.fetchItem()
     .subscribe(user => {
       this.user = user;
     });
