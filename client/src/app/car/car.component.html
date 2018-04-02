@@ -30,7 +30,7 @@
           <div class="card-action">
             <div class="row">
               <p>When do you want to reserve your car?</p>
-                <form class="col s12 m12" (ngSubmit)="sendDateForm(myForm)" #myForm="ngForm">
+                <form class="col s12 m12" (ngSubmit)="sendDateForm(myForm, car._id, car.price)" #myForm="ngForm">
                   <div class="row">
                     <div class="input-field col s6 m6">
                         <input type="datetime-local" placeholder="Pick start date" [(ngModel)]="startDate" name="startDate">

@@ -17,6 +17,12 @@ handleError(e) {
     return Observable.throw(e.json().message);
   }
 
+  addItem(item){
+    return this.http.post(`${this.base_URL}/order`, item)
+      .map(res => res.json())
+      .catch(err=>this.handleError(err));
+  }
+  
 fetchItems():Observable<any>{
     return this.http.get(`${this.base_URL}/order`)
     .map((res:Response)=>res.json())

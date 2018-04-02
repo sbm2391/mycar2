@@ -12,7 +12,7 @@ exports.postOrder = (req, res, next)=>{
 const newOrder = new Order({
     startDate: req.body.startDate,
     endDate: req.body.endDate,
-    hour: req.body.hour,
+    // hour: req.body.hour,
     total: req.body.total,
     _car : req.body._car
 });
