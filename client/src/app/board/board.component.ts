@@ -8,6 +8,7 @@ import { SessionService } from '../services/session.service';
 })
 export class BoardComponent implements OnInit {
 user;
+
   constructor(private sessionService: SessionService) { }
 
   ngOnInit() {

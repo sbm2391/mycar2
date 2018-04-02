@@ -1,0 +1,44 @@
+section{
+   min-height: 87vh;
+}
+.profile-height{
+    height: 30vh;
+    padding-top: 20px;
+}
+.image-heigth{
+    height: 25vh;
+    padding: 10px;
+    display: flex;
+    flex-direction:column;
+    align-items:center; 
+    justify-content: center;
+    
+}
+
+.image-heigth h4 {
+   color: white;
+   margin: 10px;
+}
+
+.section-padding{
+    padding: 20px;
+}
+.edit-white{
+   color: white;
+   text-decoration-line: underline;
+   cursor: pointer;
+   font-size: 18px; 
+}
+.edit{
+    color: #00897b;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.image-heigth img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
