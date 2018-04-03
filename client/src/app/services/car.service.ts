@@ -3,11 +3,11 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Http, Response} from '@angular/http';
-
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CarService {
-base_URL= 'http://localhost:3000/api';
+base_URL= environment.baseURL+ 'api';
 options= {withCredentials:true}
 constructor(private http:Http) { }
 
