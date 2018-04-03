@@ -2,7 +2,7 @@
   <div class="flex-row">
     <div class="container">
         <div class="col width-five">
-          <app-search-location></app-search-location>
+            <app-search-location (sendSearch)="receiveSearch($event)"></app-search-location>
           <div class="card">
             <div class="card-image card-map-padding">
                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
@@ -13,8 +13,8 @@
                       <agm-info-window>
                         <p class="adress"><strong>{{parking.location.address}} ({{getDistance(parking.location.coordinates[0], parking.location.coordinates[1])}} Km)</strong></p>
                         <div *ngFor="let car of parking._cars">
-                            <span><b>- {{car.marca}} </b></span>
-                            <span>{{car.modelo}} </span>
+                            <span><b>- {{car.brand}} </b></span>
+                            <span>{{car. model}} </span>
                             <span>({{car.year}}) </span>
                         </div>
                       </agm-info-window>

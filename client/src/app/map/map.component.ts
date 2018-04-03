@@ -50,6 +50,12 @@ export class MapComponent implements OnInit {
     this.km = d.toFixed(2); //Retorna tres decimales
     return this.km;
   }
-
+  receiveSearch(selectedLocation){
+    selectedLocation = selectedLocation.split(',');
+    console.log("borrame: ",selectedLocation  );
+    this.lat = Number(selectedLocation[0]);
+    this.lng = Number(selectedLocation[1]);
+    //this.getDistance(this.lat, this.lng);
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit,  Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { SessionService } from '../services/session.service';
 declare var jquery:any;   // not required
 declare var $ :any;
@@ -10,7 +10,7 @@ declare var $ :any;
 })
 export class SearchLocationComponent implements OnInit , AfterViewInit{
   user;
-  userAdress;
+  userAddress;
   userCoordinates;
   userLocalizacion;
   selectedLocation;
@@ -26,24 +26,26 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
   ];
   
   constructor(private sessionService: SessionService) { }
-
+  @Output() sendSearch = new EventEmitter<any>();
   ngOnInit() {
-    console.log("search")
+    
     this.sessionService.loggedIn()
       .subscribe(user => {
         this.user = user;
-        this.userAdress= user.location.adress;
+        this.userAddress= user.location.address;
         this.userCoordinates=user.location.coordinates;
-        this.userLocalizacion={address:this.userAdress, coordinates:this.userCoordinates}
+        this.userLocalizacion={address:this.userAddress, coordinates:this.userCoordinates}
         //determino un valor para que no sea undefine
         this.selectedLocation=this.userLocalizacion;
         // console.log(this.userLocalizacion)
         this.localizacion.push(this.userLocalizacion);
+        console.log(this.localizacion)
       });
   }
 
   ngAfterViewInit(){
     console.log("done")
+
     setTimeout(() => {
       $('select').material_select();
 
@@ -51,18 +53,15 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
   }
 
   onSubmit(form){
-    this.selectedLocation=form.controls.selectedLocation.value;
+    this.selectedLocation= form.controls.selectedLocation.value;
     //redirección
     //this.redirectMe();
-    console.log(this.selectedLocation);
+    console.log(form.controls);
 
-    // this.sendSearch.emit(this.selectedLocation.endDate.value);
+    this.sendSearch.emit(this.selectedLocation.endDate.value);
 
   }
 
-  redirectMe() {
-    window.location.replace("/private/location");
-    return false;
-  }
+
 
 }

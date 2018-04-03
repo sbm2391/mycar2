@@ -6,9 +6,9 @@
           <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
             <select name="selectedLocation" materialize="material_select" ngModel>
               <option value="0" disabled selected>Choose your option</option>
-              <option value="{{localizacion[0].coordinates}}" >{{localizacion[0].address}}</option>
-              <option value="{{localizacion[1].coordinates}}">{{localizacion[1].address}}</option>
-              <option value="{{localizacion[2].coordinates}}">{{localizacion[2].address}}</option>
+              <option value="1" >{{localizacion[0].address}}</option>
+              <option value="2">{{localizacion[1].address}}</option>
+              <option value="3">{{localizacion[2].address}}</option>
             </select>
             <input class="grey-text #fafafa grey lighten-5 waves-effect waves-light btn" type="submit">
             <!-- #fafafa grey lighten-5 -->

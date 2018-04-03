@@ -10,8 +10,8 @@ exports.postCar = (req, res, next)=>{
     Car.find()
         .then(carList => {
             const newCar = new Car({
-                marca: req.body.marca,
-                modelo: req.body.modelo,
+                brand: req.body.brand,
+                model: req.body.model,
                 year: req.body.year,
                 price: req.body.price,
                 gadges: req.body.gadges,
