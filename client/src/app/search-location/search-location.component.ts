@@ -51,14 +51,15 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
 
     }, 300);
   }
-
-  onSubmit(form){
-    this.selectedLocation= form.controls.selectedLocation.value;
+bliss;
+  onSubmit(){
+    //this.selectedLocation= myform.controls.selectedLocation.value;
+    console.log(this.selectedLocation);
     //redirección
     //this.redirectMe();
-    console.log(form.controls);
+    
 
-    this.sendSearch.emit(this.selectedLocation.endDate.value);
+    //this.sendSearch.emit(this.selectedLocation.endDate.value);
 
   }
 
