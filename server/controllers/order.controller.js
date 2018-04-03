@@ -17,7 +17,7 @@ exports.postOrder = (req, res, next)=>{
     var hours = moment.duration(result);
     var finalResult = hours.asHours();
     finalResult = Math.round(finalResult)
-
+    
     Car.findById(req.body._car)
     .then(car => {
         const newOrder = new Order({
