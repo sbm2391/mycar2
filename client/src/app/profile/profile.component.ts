@@ -4,7 +4,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { FileUploader } from 'ng2-file-upload';
-
+import { environment} from '../../environments/environment';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -47,7 +47,7 @@ uploader= new FileUploader({
     this.sessionService.loggedIn()
     .subscribe(user => {
       this.user = user;
-      this.uploader.options.url = `http://mycarweb.herokuapp.com/api/user/${this.user._id}/addimg`;
+      this.uploader.options.url = environment.baseURL + `api/user/${this.user._id}/addimg`;
     });
   }
   sendModification(){
