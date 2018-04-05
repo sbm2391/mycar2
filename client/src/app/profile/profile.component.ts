@@ -47,7 +47,7 @@ uploader= new FileUploader({
     this.sessionService.loggedIn()
     .subscribe(user => {
       this.user = user;
-      this.uploader.options.url = `http://localhost:3000/api/user/${this.user._id}/addimg`;
+      this.uploader.options.url = `http://mycarweb.herokuapp.com/api/user/${this.user._id}/addimg`;
     });
   }
   sendModification(){
