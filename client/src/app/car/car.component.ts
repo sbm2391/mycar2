@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CarService } from '../services/car.service';
 import { SessionService } from '../services/session.service';
 import { OrderService } from '../services/order.service';
@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
+  @Input() theLat: any;
+  @Input() theLng: any;
   cars;
   //poner despues padre e hijo
   user;
-  lat;
-  lng;
+  // lat;
+  // lng;
   //termina- poner despues padre e hijo
   maxKm= 3;
   km;
@@ -45,16 +47,16 @@ export class CarComponent implements OnInit {
     this.sessionService.loggedIn()
       .subscribe(user => {
         this.user = user;
-        this.lat = this.user.location.coordinates[0];
-        this.lng = this.user.location.coordinates[1];
+        this.theLat = this.user.location.coordinates[0];
+        this.theLng = this.user.location.coordinates[1];
       });
   }
   getDistance(lat2, lng2) {
     var rad = function(x) {return x*Math.PI/180;}
     var R = 6378.137; //Radio de la tierra en km
-    var dLat = rad( lat2 - this.lat );
-    var dLong = rad(lng2 - this.lng );
-    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(rad(this.lat)) * Math.cos(rad(lat2)) * Math.sin(dLong/2) * Math.sin(dLong/2);
+    var dLat = rad( lat2 - this.theLat );
+    var dLong = rad(lng2 - this.theLng );
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(rad(this.theLat)) * Math.cos(rad(lat2)) * Math.sin(dLong/2) * Math.sin(dLong/2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     var d = R * c;
     this.km = d.toFixed(2); //Retorna tres decimales

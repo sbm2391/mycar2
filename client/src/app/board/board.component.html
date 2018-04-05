@@ -31,7 +31,7 @@
                             <p ><b>Billing: </b></p>
                             <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>
                             <p class="address"><b>Total hours: </b>{{order.hour}}/hr</p>
-                            <p class="address"><b>Total to pay: </b>{{order.total}}/hr</p>
+                            <p class="address"><b>Total to pay: </b>{{order.total | currency}}</p>
                           </div>
                           <div *ngIf="order.paid == false" class="info">
                             <button class="btn waves-effect waves-light" href="/private/pay">Pay</button>

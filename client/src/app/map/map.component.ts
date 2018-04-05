@@ -8,8 +8,8 @@ import { SessionService } from '../services/session.service';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  lat: number;
-  lng: number;
+  lat: number = 0;
+  lng: number = 0;
   zoom: number = 13;
 
   parkings;
@@ -30,6 +30,7 @@ export class MapComponent implements OnInit {
         this.lat = this.user.location.coordinates[0];
         this.lng = this.user.location.coordinates[1];
       });
+     
   }
 
   getParkings() {
@@ -51,11 +52,13 @@ export class MapComponent implements OnInit {
     return this.km;
   }
   receiveSearch(selectedLocation){
+
     selectedLocation = selectedLocation.split(',');
     console.log("borrame: ",selectedLocation  );
     this.lat = Number(selectedLocation[0]);
     this.lng = Number(selectedLocation[1]);
-    //this.getDistance(this.lat, this.lng);
+    console.log(this.lat);
+    console.log(this.lng)
   }
 
 }

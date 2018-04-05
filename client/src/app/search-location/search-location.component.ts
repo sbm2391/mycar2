@@ -13,7 +13,7 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
   userAddress;
   userCoordinates;
   userLocalizacion;
-  selectedLocation;
+  selectedLocation = '';
   localizacion=[
   {
       address:"Aeropuerto Internacional de la Ciudad de México",
@@ -34,7 +34,7 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
         this.user = user;
         this.userAddress= user.location.address;
         this.userCoordinates=user.location.coordinates;
-        this.userLocalizacion={address:this.userAddress, coordinates:this.userCoordinates}
+        this.userLocalizacion={address:this.userAddress, coordinates: this.userCoordinates}
         //determino un valor para que no sea undefine
         this.selectedLocation=this.userLocalizacion;
         // console.log(this.userLocalizacion)
@@ -51,18 +51,13 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
 
     }, 300);
   }
-bliss;
-  onSubmit(){
-    //this.selectedLocation= myform.controls.selectedLocation.value;
-    console.log(this.selectedLocation);
-    //redirección
-    //this.redirectMe();
-    
 
-    //this.sendSearch.emit(this.selectedLocation.endDate.value);
+  onSubmit(){
+   
+    console.log(this.selectedLocation)
+    this.sendSearch.emit(this.selectedLocation);
 
   }
-
 
 
 }

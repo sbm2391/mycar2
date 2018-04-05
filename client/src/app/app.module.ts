@@ -24,6 +24,8 @@ import { RouterModule } from '@angular/router';
 
 // materializecss
 import { MaterializeModule } from 'angular2-materialize';
+import { MaterializeDirective } from 'angular2-materialize';
+
 
 // google maps
 import { AgmCoreModule } from '@agm/core';
@@ -50,7 +52,8 @@ import { SearchLocationComponent } from './search-location/search-location.compo
     ProfileComponent,
     CarComponent,
     BoardComponent,
-    SearchLocationComponent
+    SearchLocationComponent,
+    MaterializeDirective
   ],
   imports: [
     BrowserModule,
