@@ -54,11 +54,8 @@ export class MapComponent implements OnInit {
   receiveSearch(selectedLocation){
 
     selectedLocation = selectedLocation.split(',');
-    console.log("borrame: ",selectedLocation  );
     this.lat = Number(selectedLocation[0]);
     this.lng = Number(selectedLocation[1]);
-    console.log(this.lat);
-    console.log(this.lng)
   }
 
 }

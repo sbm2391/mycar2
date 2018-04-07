@@ -32,7 +32,6 @@ export class AuthSignupComponent implements OnInit {
 
 // desabilite en mi controler
   sendSignupForm(myForm) {
-    console.log(myForm.value);
     const newUser = {
       name: myForm.value.name,
       familyName: myForm.value.familyName,
@@ -45,8 +44,6 @@ export class AuthSignupComponent implements OnInit {
         coordinates: this.coordinates
       }
     }
-
-    console.log(newUser)
     this.sessionService.signup(newUser)
       .subscribe(() => {
         this.router.navigate(['private'])
@@ -70,11 +67,7 @@ export class AuthSignupComponent implements OnInit {
         }
         this.latitude = place.geometry.location.lat();
         this.longitude = place.geometry.location.lng();
-        // console.log(this.latitude);
-        // console.log(this.longitude);
         this.coordinates = [this.latitude, this.longitude];
-
-        // console.log(this.coordinates);
       });
     });
   });

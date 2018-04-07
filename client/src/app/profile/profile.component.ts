@@ -65,7 +65,6 @@ uploader= new FileUploader({
   }
   updatePhoto() {
     this.uploader.queue[0].method="PATCH"
-      console.log("voy a subir archivo")
       //form es un objeto interno de la instancia FileUploader
     this.uploader.uploadAll();
     this.uploader.onCompleteItem = () => this.router.navigate(['/private']);

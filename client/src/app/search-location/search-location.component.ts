@@ -37,9 +37,7 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
         this.userLocalizacion={address:this.userAddress, coordinates: this.userCoordinates}
         //determino un valor para que no sea undefine
         this.selectedLocation=this.userLocalizacion;
-        // console.log(this.userLocalizacion)
         this.localizacion.push(this.userLocalizacion);
-        console.log(this.localizacion)
       });
   }
 
@@ -53,8 +51,6 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
   }
 
   onSubmit(){
-   
-    console.log(this.selectedLocation)
     this.sendSearch.emit(this.selectedLocation);
 
   }

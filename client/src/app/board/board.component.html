@@ -4,7 +4,8 @@
 <section *ngIf="user" class="section-padding #eeeeee grey lighten-3">
     <div class="flex-row">
       <div class="container">
-        <h5>Your reservations: </h5>
+        <h5 *ngIf="user._orders.length >= 1" >Your reservations: </h5>
+        <h5 *ngIf="user._orders.length < 1" >You don't have reservations </h5>
         <div *ngFor="let order of user._orders" class="col s12 m6">
             <div class="col s12 m7">
                 <div class="card horizontal">
@@ -30,7 +31,8 @@
                           <div>
                             <p ><b>Billing: </b></p>
                             <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>
-                            <p class="address"><b>Total hours: </b>{{order.hour}}/hr</p>
+                            <p class="address" *ngIf="order.hour === 1" ><b>Total hour: </b>{{order.hour}}hr</p>
+                            <p class="address" *ngIf="order.hour !== 1" ><b>Total hours: </b>{{order.hour}}hrs</p>
                             <p class="address"><b>Total to pay: </b>{{order.total | currency:'MXN'}}</p>
                           </div>
                           <div *ngIf="order.paid == false" class="info">

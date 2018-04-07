@@ -48,7 +48,6 @@ export class SessionService {
     .map((res:Response)=>res.json())
     .map(item=>item)
     .catch(e=>{
-      console.log(e);
       return Observable.throw(e);
     })
   }
@@ -58,7 +57,6 @@ export class SessionService {
       .map((res:Response)=>res.json())
       .map(item=>item)
       .catch(e=>{
-        console.log(e);
         return Observable.throw(e);
       })
     }
