@@ -300,7 +300,6 @@ var AuthSignupComponent = /** @class */ (function () {
     // desabilite en mi controler
     AuthSignupComponent.prototype.sendSignupForm = function (myForm) {
         var _this = this;
-        console.log(myForm.value);
         var newUser = {
             name: myForm.value.name,
             familyName: myForm.value.familyName,
@@ -313,7 +312,6 @@ var AuthSignupComponent = /** @class */ (function () {
                 coordinates: this.coordinates
             }
         };
-        console.log(newUser);
         this.sessionService.signup(newUser)
             .subscribe(function () {
             _this.router.navigate(['private']);
@@ -337,10 +335,7 @@ var AuthSignupComponent = /** @class */ (function () {
                     }
                     _this.latitude = place.geometry.location.lat();
                     _this.longitude = place.geometry.location.lng();
-                    // console.log(this.latitude);
-                    // console.log(this.longitude);
                     _this.coordinates = [_this.latitude, _this.longitude];
-                    // console.log(this.coordinates);
                 });
             });
         });
@@ -375,7 +370,7 @@ module.exports = ".section-padding{\n    padding: 20px;\n    min-height: 87vh;\n
 /***/ "./src/app/board/board.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-private></app-nav-private>\n<!-- <p *ngIf=\"user\">{{user | json}}</p> -->\n\n<section *ngIf=\"user\" class=\"section-padding #eeeeee grey lighten-3\">\n    <div class=\"flex-row\">\n      <div class=\"container\">\n        <h5>Your reservations: </h5>\n        <div *ngFor=\"let order of user._orders\" class=\"col s12 m6\">\n            <div class=\"col s12 m7\">\n                <div class=\"card horizontal\">\n                    <div class=\"card-image flex-column\">\n                      <img class=\"margin-img\" src=\"http://localhost:3000/{{order._car.img}}\">\n                    </div>\n                  <div class=\"card-stacked\">\n                    <div class=\"card-content\">\n                      <p><b>Car information: </b></p>\n                        <div>\n                          <span><b>{{order._car.brand}} </b></span>\n                          <span>{{order._car.model}} </span>\n                          <span>({{order._car.year}}) </span>\n                        </div>\n                        <div>\n                        <p><b>Your reservation information: </b></p>\n                        <p><b>Car location:</b> {{order._car.location.address}}</p>\n                        </div>  \n                    </div>\n                    <div class=\"card-content\">\n                      <div class=\"billing\">\n                        <div class=\"flex-row\">\n                          <div>\n                            <p ><b>Billing: </b></p>\n                            <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>\n                            <p class=\"address\"><b>Total hours: </b>{{order.hour}}/hr</p>\n                            <p class=\"address\"><b>Total to pay: </b>{{order.total | currency:'MXN'}}</p>\n                          </div>\n                          <div *ngIf=\"order.paid == false\" class=\"info\">\n                              <button class=\"btn waves-effect waves-light\" (click)=\"openCheckout(order)\">Pay</button>\n                          </div>\n                        </div>\n                        \n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>          \n        </div>  \n      </div>\n    </div>\n  </section>\n  <app-footer></app-footer>"
+module.exports = "<app-nav-private></app-nav-private>\n<!-- <p *ngIf=\"user\">{{user | json}}</p> -->\n\n<section *ngIf=\"user\" class=\"section-padding #eeeeee grey lighten-3\">\n    <div class=\"flex-row\">\n      <div class=\"container\">\n        <h5 *ngIf=\"user._orders.length >= 1\" >Your reservations: </h5>\n        <h5 *ngIf=\"user._orders.length < 1\" >You don't have reservations </h5>\n        <div *ngFor=\"let order of user._orders\" class=\"col s12 m6\">\n            <div class=\"col s12 m7\">\n                <div class=\"card horizontal\">\n                    <div class=\"card-image flex-column\">\n                      <img class=\"margin-img\" src=\"http://localhost:3000/{{order._car.img}}\">\n                    </div>\n                  <div class=\"card-stacked\">\n                    <div class=\"card-content\">\n                      <p><b>Car information: </b></p>\n                        <div>\n                          <span><b>{{order._car.brand}} </b></span>\n                          <span>{{order._car.model}} </span>\n                          <span>({{order._car.year}}) </span>\n                        </div>\n                        <div>\n                        <p><b>Your reservation information: </b></p>\n                        <p><b>Car location:</b> {{order._car.location.address}}</p>\n                        </div>  \n                    </div>\n                    <div class=\"card-content\">\n                      <div class=\"billing\">\n                        <div class=\"flex-row\">\n                          <div>\n                            <p ><b>Billing: </b></p>\n                            <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>\n                            <p class=\"address\" *ngIf=\"order.hour === 1\" ><b>Total hour: </b>{{order.hour}}hr</p>\n                            <p class=\"address\" *ngIf=\"order.hour !== 1\" ><b>Total hours: </b>{{order.hour}}hrs</p>\n                            <p class=\"address\"><b>Total to pay: </b>{{order.total | currency:'MXN'}}</p>\n                          </div>\n                          <div *ngIf=\"order.paid == false\" class=\"info\">\n                              <button class=\"btn waves-effect waves-light\" (click)=\"openCheckout(order)\">Pay</button>\n                          </div>\n                        </div>\n                        \n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>          \n        </div>  \n      </div>\n    </div>\n  </section>\n  <app-footer></app-footer>"
 
 /***/ }),
 
@@ -524,16 +519,13 @@ var CarComponent = /** @class */ (function () {
     };
     CarComponent.prototype.sendDateForm = function (myForm, carId, carPrice) {
         var _this = this;
-        console.log(myForm.value);
         var newOrder = {
             startDate: myForm.value.startDate,
             endDate: myForm.value.endDate,
             _car: carId
         };
-        console.log(newOrder);
         this.orderService.addItem(newOrder)
             .subscribe(function (order) {
-            console.log(order);
             _this.router.navigate(['orders']);
         });
     };
@@ -739,11 +731,8 @@ var MapComponent = /** @class */ (function () {
     };
     MapComponent.prototype.receiveSearch = function (selectedLocation) {
         selectedLocation = selectedLocation.split(',');
-        console.log("borrame: ", selectedLocation);
         this.lat = Number(selectedLocation[0]);
         this.lng = Number(selectedLocation[1]);
-        console.log(this.lat);
-        console.log(this.lng);
     };
     MapComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -1009,7 +998,6 @@ var ProfileComponent = /** @class */ (function () {
     ProfileComponent.prototype.updatePhoto = function () {
         var _this = this;
         this.uploader.queue[0].method = "PATCH";
-        console.log("voy a subir archivo");
         //form es un objeto interno de la instancia FileUploader
         this.uploader.uploadAll();
         this.uploader.onCompleteItem = function () { return _this.router.navigate(['/private']); };
@@ -1147,9 +1135,7 @@ var SearchLocationComponent = /** @class */ (function () {
             _this.userLocalizacion = { address: _this.userAddress, coordinates: _this.userCoordinates };
             //determino un valor para que no sea undefine
             _this.selectedLocation = _this.userLocalizacion;
-            // console.log(this.userLocalizacion)
             _this.localizacion.push(_this.userLocalizacion);
-            console.log(_this.localizacion);
         });
     };
     SearchLocationComponent.prototype.ngAfterViewInit = function () {
@@ -1159,7 +1145,6 @@ var SearchLocationComponent = /** @class */ (function () {
         }, 300);
     };
     SearchLocationComponent.prototype.onSubmit = function () {
-        console.log(this.selectedLocation);
         this.sendSearch.emit(this.selectedLocation);
     };
     __decorate([
@@ -1458,7 +1443,6 @@ var SessionService = /** @class */ (function () {
             .map(function (res) { return res.json(); })
             .map(function (item) { return item; })
             .catch(function (e) {
-            console.log(e);
             return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["a" /* Observable */].throw(e);
         });
     };
@@ -1467,7 +1451,6 @@ var SessionService = /** @class */ (function () {
             .map(function (res) { return res.json(); })
             .map(function (item) { return item; })
             .catch(function (e) {
-            console.log(e);
             return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["a" /* Observable */].throw(e);
         });
     };
