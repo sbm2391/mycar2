@@ -44,10 +44,11 @@ uploader= new FileUploader({
    this.getUser();
   }
   getUser() {
+    
     this.sessionService.loggedIn()
     .subscribe(user => {
       this.user = user;
-      this.uploader.options.url = environment.baseURL + `api/user/${this.user._id}/addimg`;
+      this.uploader.options.url = environment.baseURL + `api/user/${user._id}/addimg`;
     });
   }
   sendModification(){

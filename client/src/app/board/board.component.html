@@ -34,7 +34,7 @@
                             <p class="address"><b>Total to pay: </b>{{order.total | currency:'MXN'}}</p>
                           </div>
                           <div *ngIf="order.paid == false" class="info">
-                            <button class="btn waves-effect waves-light" href="/private/pay">Pay</button>
+                              <button class="btn waves-effect waves-light" (click)="openCheckout(order)">Pay</button>
                           </div>
                         </div>
                         
