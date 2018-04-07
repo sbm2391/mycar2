@@ -13,7 +13,8 @@ export class SessionService {
   constructor(private http: Http, public toastr: ToastsManager) { }
 
   handleError(e) {
-    this.toastr.error(e._body);
+    var error = e._body.substring(12, e._body.length - 2);
+    this.toastr.error(error);
     return Observable.throw(e.json().message);
   }
 

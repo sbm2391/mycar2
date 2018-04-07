@@ -29,9 +29,8 @@ export class AuthLoginComponent implements OnInit {
   sendForm () {
      this.sessionS.login(this.formInfo.username,this.formInfo.password)
        .subscribe(respuesta => {
-         console.log("hola")
-          this.toastr.success('Welcome!', 'Success');
-          setTimeout (() => { this.route.navigate(['private']); }, 1000);
+          this.toastr.success(`Welcome ${this.formInfo.username}!`);
+          setTimeout (() => { this.route.navigate(['private']); }, 500);
     });
   }
 }
