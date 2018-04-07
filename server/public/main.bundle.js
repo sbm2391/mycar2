@@ -99,6 +99,9 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_ng2_file_upload__ = __webpack_require__("./node_modules/ng2-file-upload/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_ng2_file_upload__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__search_location_search_location_component__ = __webpack_require__("./src/app/search-location/search-location.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_ng2_toastr_ng2_toastr__ = __webpack_require__("./node_modules/ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_ng2_toastr_ng2_toastr__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__angular_platform_browser_animations__ = __webpack_require__("./node_modules/@angular/platform-browser/@angular/platform-browser/animations.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -136,6 +139,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 // upload images
 
 
+// toastr
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -158,11 +164,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_18_angular2_materialize__["a" /* MaterializeDirective */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_24_ng2_file_upload__["FileUploadModule"],
                 __WEBPACK_IMPORTED_MODULE_17__angular_router__["c" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_16__routes_app_routing__["a" /* routes */]),
+                __WEBPACK_IMPORTED_MODULE_26_ng2_toastr_ng2_toastr__["ToastModule"].forRoot(),
+                __WEBPACK_IMPORTED_MODULE_27__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
                 __WEBPACK_IMPORTED_MODULE_19__agm_core__["a" /* AgmCoreModule */].forRoot({
                     apiKey: 'AIzaSyDpW6TUBIPxhP7Zx9zKbv1yCOnbX94b6Qc',
                     libraries: ['places']
@@ -187,7 +195,7 @@ var AppModule = /** @class */ (function () {
 /***/ "./src/app/auth-login/auth-login.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "\n\ninput {\n    margin: 20px auto;\n    }\n    \n    .size-inputs{\n        width: 30vw;\n    }\n    \n    .container {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        text-align: center;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        height: 87vh;\n    }\n    "
+module.exports = "\n\ninput {\n    margin: 20px auto;\n    }\n    \n    .size-inputs{\n        width: 30vw;\n    }\n    \n    .container {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        text-align: center;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        height: 87vh;\n    }\n    \n\n    "
 
 /***/ }),
 
@@ -206,6 +214,8 @@ module.exports = "<app-nav-public></app-nav-public>\n<div class=\"container\">\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_session_service__ = __webpack_require__("./src/app/services/session.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr__ = __webpack_require__("./node_modules/ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -218,21 +228,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthLoginComponent = /** @class */ (function () {
-    function AuthLoginComponent(sessionS, route) {
+    function AuthLoginComponent(sessionS, route, toastr, vcr) {
         this.sessionS = sessionS;
         this.route = route;
+        this.toastr = toastr;
         this.formInfo = {
             username: '',
             password: ''
         };
+        this.toastr.setRootViewContainerRef(vcr);
     }
     AuthLoginComponent.prototype.ngOnInit = function () {
     };
     AuthLoginComponent.prototype.sendForm = function () {
         var _this = this;
         this.sessionS.login(this.formInfo.username, this.formInfo.password)
-            .subscribe(function (respuesta) { return _this.route.navigate(["private"]); });
+            .subscribe(function (respuesta) {
+            _this.toastr.success("Welcome " + _this.formInfo.username + "!");
+            setTimeout(function () { _this.route.navigate(['private']); }, 500);
+        });
     };
     AuthLoginComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -240,10 +256,10 @@ var AuthLoginComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/auth-login/auth-login.component.html"),
             styles: [__webpack_require__("./src/app/auth-login/auth-login.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr__["ToastsManager"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ng2_toastr_ng2_toastr__["ToastsManager"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"]) === "function" && _d || Object])
     ], AuthLoginComponent);
     return AuthLoginComponent;
-    var _a, _b;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=/Users/bet/Documents/ironhack/week8/proyecto3/mycar2/client/src/auth-login.component.js.map
@@ -253,7 +269,7 @@ var AuthLoginComponent = /** @class */ (function () {
 /***/ "./src/app/auth-signup/auth-signup.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "\n.container {\n   \n    height: 85vh;\n}\n.row{\n    text-align: center;\n}\n\n"
+module.exports = "\n.container {\n   \n    height: 85vh;\n}\n.row{\n    text-align: center;\n}"
 
 /***/ }),
 
@@ -273,6 +289,8 @@ module.exports = "<app-nav-public></app-nav-public>\n<div class=\"container\">\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_session_service__ = __webpack_require__("./src/app/services/session.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__agm_core__ = __webpack_require__("./node_modules/@agm/core/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__ = __webpack_require__("./node_modules/ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -286,13 +304,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthSignupComponent = /** @class */ (function () {
-    function AuthSignupComponent(sessionService, router, mapsAPILoader, ngZone) {
+    function AuthSignupComponent(sessionService, router, mapsAPILoader, ngZone, toastr, vcr) {
         this.sessionService = sessionService;
         this.router = router;
         this.mapsAPILoader = mapsAPILoader;
         this.ngZone = ngZone;
+        this.toastr = toastr;
         this.coordinates = [];
+        this.toastr.setRootViewContainerRef(vcr);
     }
     AuthSignupComponent.prototype.ngOnInit = function () {
         this.getReadyAutocomplete();
@@ -314,7 +335,9 @@ var AuthSignupComponent = /** @class */ (function () {
         };
         this.sessionService.signup(newUser)
             .subscribe(function () {
-            _this.router.navigate(['private']);
+            // this.router.navigate(['private'])
+            _this.toastr.success("Welcome " + newUser.username + "!");
+            setTimeout(function () { _this.router.navigate(['private']); }, 500);
         });
     };
     AuthSignupComponent.prototype.getReadyAutocomplete = function () {
@@ -350,10 +373,10 @@ var AuthSignupComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/auth-signup/auth-signup.component.html"),
             styles: [__webpack_require__("./src/app/auth-signup/auth-signup.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__agm_core__["b" /* MapsAPILoader */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__["ToastsManager"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ng2_toastr_ng2_toastr__["ToastsManager"]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"]) === "function" && _g || Object])
     ], AuthSignupComponent);
     return AuthSignupComponent;
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=/Users/bet/Documents/ironhack/week8/proyecto3/mycar2/client/src/auth-signup.component.js.map
@@ -370,7 +393,7 @@ module.exports = ".section-padding{\n    padding: 20px;\n    min-height: 87vh;\n
 /***/ "./src/app/board/board.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-private></app-nav-private>\n<!-- <p *ngIf=\"user\">{{user | json}}</p> -->\n\n<section *ngIf=\"user\" class=\"section-padding #eeeeee grey lighten-3\">\n    <div class=\"flex-row\">\n      <div class=\"container\">\n        <h5 *ngIf=\"user._orders.length >= 1\" >Your reservations: </h5>\n        <h5 *ngIf=\"user._orders.length < 1\" >You don't have reservations </h5>\n        <div *ngFor=\"let order of user._orders\" class=\"col s12 m6\">\n            <div class=\"col s12 m7\">\n                <div class=\"card horizontal\">\n                    <div class=\"card-image flex-column\">\n                      <img class=\"margin-img\" src=\"http://localhost:3000/{{order._car.img}}\">\n                    </div>\n                  <div class=\"card-stacked\">\n                    <div class=\"card-content\">\n                      <p><b>Car information: </b></p>\n                        <div>\n                          <span><b>{{order._car.brand}} </b></span>\n                          <span>{{order._car.model}} </span>\n                          <span>({{order._car.year}}) </span>\n                        </div>\n                        <div>\n                        <p><b>Your reservation information: </b></p>\n                        <p><b>Car location:</b> {{order._car.location.address}}</p>\n                        </div>  \n                    </div>\n                    <div class=\"card-content\">\n                      <div class=\"billing\">\n                        <div class=\"flex-row\">\n                          <div>\n                            <p ><b>Billing: </b></p>\n                            <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>\n                            <p class=\"address\" *ngIf=\"order.hour === 1\" ><b>Total hour: </b>{{order.hour}}hr</p>\n                            <p class=\"address\" *ngIf=\"order.hour !== 1\" ><b>Total hours: </b>{{order.hour}}hrs</p>\n                            <p class=\"address\"><b>Total to pay: </b>{{order.total | currency:'MXN'}}</p>\n                          </div>\n                          <div *ngIf=\"order.paid == false\" class=\"info\">\n                              <button class=\"btn waves-effect waves-light\" (click)=\"openCheckout(order)\">Pay</button>\n                          </div>\n                        </div>\n                        \n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>          \n        </div>  \n      </div>\n    </div>\n  </section>\n  <app-footer></app-footer>"
+module.exports = "<app-nav-private></app-nav-private>\n<!-- <p *ngIf=\"user\">{{user | json}}</p> -->\n\n<section *ngIf=\"user\" class=\"section-padding #eeeeee grey lighten-3\">\n    <div class=\"flex-row\">\n      <div class=\"container\">\n        <h5 *ngIf=\"user._orders.length >= 1\" >Your reservations: </h5>\n        <h5 *ngIf=\"user._orders.length < 1\" >We don't have any reservations for you!</h5>\n        <div *ngFor=\"let order of user._orders\" class=\"col s12 m6\">\n            <div class=\"col s12 m7\">\n                <div class=\"card horizontal\">\n                    <div class=\"card-image flex-column\">\n                      <img class=\"margin-img\" src=\"http://localhost:3000/{{order._car.img}}\">\n                    </div>\n                  <div class=\"card-stacked\">\n                    <div class=\"card-content\">\n                      <p><b>Car information: </b></p>\n                        <div>\n                          <span><b>{{order._car.brand}} </b></span>\n                          <span>{{order._car.model}} </span>\n                          <span>({{order._car.year}}) </span>\n                        </div>\n                        <div>\n                        <p><b>Your reservation information: </b></p>\n                        <p><b>Car location:</b> {{order._car.location.address}}</p>\n                        </div>  \n                    </div>\n                    <div class=\"card-content\">\n                      <div class=\"billing\">\n                        <div class=\"flex-row\">\n                          <div>\n                            <p ><b>Billing: </b></p>\n                            <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>\n                            <p class=\"address\" *ngIf=\"order.hour === 1\" ><b>Total hour: </b>{{order.hour}}hr</p>\n                            <p class=\"address\" *ngIf=\"order.hour !== 1\" ><b>Total hours: </b>{{order.hour}}hrs</p>\n                            <p class=\"address\"><b>Total to pay: </b>{{order.total | currency:'MXN'}}</p>\n                          </div>\n                          <div *ngIf=\"order.paid == false\" class=\"info\">\n                              <button class=\"btn waves-effect waves-light\" (click)=\"openCheckout(order)\">Pay</button>\n                          </div>\n                        </div>\n                        \n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>          \n        </div>  \n      </div>\n    </div>\n  </section>\n  <app-footer></app-footer>"
 
 /***/ }),
 
@@ -447,7 +470,7 @@ module.exports = ".container-gadges div{\n    margin: 2px;\n}\n.card-image img{\
 /***/ "./src/app/car/car.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-content\">\n    <!-- despliegue de coches -->\n    <p><b>Cars are shown in a {{maxKm}}km radius</b></p>\n    \n    <div *ngFor=\"let car of cars  ; let i=index\">\n      <div class=\"card horizontal\" *ngIf=\"getDistance(car.location.coordinates[0], car.location.coordinates[1]) <= maxKm\">\n        <div class=\"card-image flex-column\">\n          <img class=\"margin-img\" src=\"http://localhost:3000/{{car.img}}\">\n          <p class=\"address\"><strong>{{car.location.address}}</strong></p>\n          <p class=\"address\">({{getDistance(car.location.coordinates[0], car.location.coordinates[1])}} Km)</p>\n        </div>\n        <div class=\"card-stacked\">\n          <div class=\"card-content flex-row\">\n            <div class=\"info-car flex-column\">\n              <div>\n                <span><b>{{car. brand}} </b></span>\n                <span>{{car. model}} </span>\n                <span>({{car.year}}) </span>\n              </div>\n              <div class=\"flex-row container-gadges\">\n                <div *ngFor=\"let gadge of car.gadges\">\n                    <img src=\"http://localhost:3000/{{gadge}}\" alt=\"item car\">\n                </div>\n              </div>\n            </div>\n            <div class=\"info-car\">\n                <p>${{car.price | currency:'MXN'}} / hr</p>\n            </div>\n          </div>\n          <div class=\"card-action\">\n            <div class=\"row\">\n              <p>When do you want to reserve your car?</p>\n                <form class=\"col s12 m12\" (ngSubmit)=\"sendDateForm(myForm, car._id, car.price)\" #myForm=\"ngForm\">\n                  <div class=\"row\">\n                    <div class=\"input-field col s6 m6\">\n                        <input type=\"datetime-local\" placeholder=\"Pick start date\" [(ngModel)]=\"start-car.index\" name=\"startDate\">\n                    </div>\n                      <div class=\"input-field col s6 m6\">\n                          <input type=\"datetime-local\" placeholder=\"Pick end date\" [(ngModel)]=\"end-car.index\" name=\"endDate\">\n                      </div>\n                    </div>\n                    <button class=\"btn waves-effect waves-light\" \n                 type=\"submit\">Reserve</button>\n                </form>\n              </div>\n          </div>\n        </div>\n      </div><!-- /despliegue de coches -->\n    </div>\n  </div>\n"
+module.exports = "<div class=\"card-content\">\n    <!-- despliegue de coches -->\n    <p><b>Cars are shown in a {{maxKm}}km radius</b></p>\n    \n    <div *ngFor=\"let car of cars  ; let i=index\">\n      <div class=\"card horizontal\" *ngIf=\"getDistance(car.location.coordinates[0], car.location.coordinates[1]) <= maxKm\">\n        <div class=\"card-image flex-column\">\n          <img class=\"margin-img\" src=\"http://localhost:3000/{{car.img}}\">\n          <p class=\"address\"><strong>{{car.location.address}}</strong></p>\n          <p class=\"address\">({{getDistance(car.location.coordinates[0], car.location.coordinates[1])}} Km)</p>\n        </div>\n        <div class=\"card-stacked\">\n          <div class=\"card-content flex-row\">\n            <div class=\"info-car flex-column\">\n              <div>\n                <span><b>{{car. brand}} </b></span>\n                <span>{{car. model}} </span>\n                <span>({{car.year}}) </span>\n              </div>\n              <div class=\"flex-row container-gadges\">\n                <div *ngFor=\"let gadge of car.gadges\">\n                    <img src=\"http://localhost:3000/{{gadge}}\" alt=\"item car\">\n                </div>\n              </div>\n            </div>\n            <div class=\"info-car\">\n                <p>${{car.price | currency:'MXN'}} / hr</p>\n            </div>\n          </div>\n          <div class=\"card-action\">\n            <div class=\"row\">\n              <p>When do you want to reserve your car?</p>\n                <form class=\"col s12 m12\" (ngSubmit)=\"sendDateForm(myForm, car._id, car.price)\" #myForm=\"ngForm\">\n                  <div class=\"row\">\n                    <div class=\"input-field col s6 m6\">\n                        <input type=\"datetime-local\" placeholder=\"Pick start date\" [(ngModel)]=\"start-car.index\" name=\"startDate\" required>\n                    </div>\n                      <div class=\"input-field col s6 m6\">\n                          <input type=\"datetime-local\" placeholder=\"Pick end date\" [(ngModel)]=\"end-car.index\" name=\"endDate\" required>\n                      </div>\n                    </div>\n                    <button class=\"btn waves-effect waves-light\" \n                 type=\"submit\">Reserve</button>\n                </form>\n              </div>\n          </div>\n        </div>\n      </div><!-- /despliegue de coches -->\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -1139,7 +1162,6 @@ var SearchLocationComponent = /** @class */ (function () {
         });
     };
     SearchLocationComponent.prototype.ngAfterViewInit = function () {
-        console.log("done");
         setTimeout(function () {
             $('select').material_select();
         }, 300);
@@ -1388,6 +1410,8 @@ var ParkingService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/catch.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("./node_modules/@angular/http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_toastr_ng2_toastr__ = __webpack_require__("./node_modules/ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_ng2_toastr_ng2_toastr__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1403,13 +1427,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SessionService = /** @class */ (function () {
-    function SessionService(http) {
+    function SessionService(http, toastr) {
         this.http = http;
+        this.toastr = toastr;
         this.base_URL = __WEBPACK_IMPORTED_MODULE_5__environments_environment__["a" /* environment */].baseURL + 'api';
         this.options = { withCredentials: true };
     }
     SessionService.prototype.handleError = function (e) {
+        var error = e._body.substring(12, e._body.length - 2);
+        this.toastr.error(error);
         return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["a" /* Observable */].throw(e.json().message);
     };
     // Primera forma de enviar datos a nuestro Back-End
@@ -1456,10 +1484,10 @@ var SessionService = /** @class */ (function () {
     };
     SessionService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6_ng2_toastr_ng2_toastr__["ToastsManager"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ng2_toastr_ng2_toastr__["ToastsManager"]) === "function" && _b || Object])
     ], SessionService);
     return SessionService;
-    var _a;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=/Users/bet/Documents/ironhack/week8/proyecto3/mycar2/client/src/session.service.js.map
@@ -1471,9 +1499,13 @@ var SessionService = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+// The file contents for the current environment will overwrite these during build.
+// The build system defaults to the dev environment which uses `environment.ts`, but if you do
+// `ng build --env=prod` then `environment.prod.ts` will be used instead.
+// The list of which env maps to which file can be found in `angular-cli.json`.
 var environment = {
-    production: true,
-    baseURL: ''
+    production: false,
+    baseURL: 'http://localhost:3000/'
 };
 //# sourceMappingURL=/Users/bet/Documents/ironhack/week8/proyecto3/mycar2/client/src/environment.js.map
 
