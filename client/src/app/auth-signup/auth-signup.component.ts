@@ -50,7 +50,6 @@ export class AuthSignupComponent implements OnInit {
     }
     this.sessionService.signup(newUser)
       .subscribe(() => {
-        // this.router.navigate(['private'])
         this.toastr.success(`Welcome ${newUser.username}!`);
         setTimeout (() => { this.router.navigate(['private']); }, 500);
       });

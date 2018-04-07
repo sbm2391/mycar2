@@ -12,7 +12,7 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
   user;
   userAddress;
   userCoordinates;
-  userLocalizacion;
+  userLocation;
   selectedLocation = '';
   localizacion=[
   {
@@ -34,10 +34,10 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
         this.user = user;
         this.userAddress= user.location.address;
         this.userCoordinates=user.location.coordinates;
-        this.userLocalizacion={address:this.userAddress, coordinates: this.userCoordinates}
+        this.userLocation={address:this.userAddress, coordinates: this.userCoordinates}
         //determino un valor para que no sea undefine
-        this.selectedLocation=this.userLocalizacion;
-        this.localizacion.push(this.userLocalizacion);
+        this.selectedLocation= this.userLocation;
+        this.localizacion.push( this.userLocation);
       });
   }
 

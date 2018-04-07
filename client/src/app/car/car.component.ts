@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { CarService } from '../services/car.service';
 import { SessionService } from '../services/session.service';
 import { OrderService } from '../services/order.service';
 import { Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-car',
@@ -13,11 +14,7 @@ export class CarComponent implements OnInit {
   @Input() theLat: any;
   @Input() theLng: any;
   cars;
-  //poner despues padre e hijo
   user;
-  // lat;
-  // lng;
-  //termina- poner despues padre e hijo
   maxKm= 3;
   km;
 
@@ -26,8 +23,12 @@ export class CarComponent implements OnInit {
     private carService: CarService,
     private sessionService: SessionService,
     private orderService: OrderService,
-    private router: Router
-  ) { }
+    private router: Router,
+    public toastr: ToastsManager,
+    vcr: ViewContainerRef
+  ) { 
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.getCars();
@@ -71,7 +72,8 @@ export class CarComponent implements OnInit {
     }
     this.orderService.addItem(newOrder)
     .subscribe(order => {
-      this.router.navigate(['orders'])
+      this.toastr.success('Succes! Your order has been made');
+        setTimeout (() => { this.router.navigate(['orders']); }, 1000);
     })
   }
 
