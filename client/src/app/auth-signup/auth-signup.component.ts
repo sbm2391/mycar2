@@ -1,10 +1,10 @@
-import { Component, OnInit, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone, ViewChild, ViewContainerRef } from '@angular/core';
 import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
-//import { FileUploader } from 'ng2-file-upload';
 // agm
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-auth-signup',
@@ -23,8 +23,12 @@ export class AuthSignupComponent implements OnInit {
     private sessionService : SessionService, 
     private router : Router,
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
-  ) { }
+    private ngZone: NgZone,
+    public toastr: ToastsManager,
+    vcr: ViewContainerRef
+  ) { 
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.getReadyAutocomplete();
@@ -46,7 +50,9 @@ export class AuthSignupComponent implements OnInit {
     }
     this.sessionService.signup(newUser)
       .subscribe(() => {
-        this.router.navigate(['private'])
+        // this.router.navigate(['private'])
+        this.toastr.success('Welcome!', 'Success');
+        setTimeout (() => { this.router.navigate(['private']); }, 500);
       });
   }
 

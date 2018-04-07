@@ -42,8 +42,6 @@ export class SearchLocationComponent implements OnInit , AfterViewInit{
   }
 
   ngAfterViewInit(){
-    console.log("done")
-
     setTimeout(() => {
       $('select').material_select();
 

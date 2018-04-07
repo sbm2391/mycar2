@@ -26,7 +26,6 @@ import { RouterModule } from '@angular/router';
 import { MaterializeModule } from 'angular2-materialize';
 import { MaterializeDirective } from 'angular2-materialize';
 
-
 // google maps
 import { AgmCoreModule } from '@agm/core';
 import { NavPrivateComponent } from './nav-private/nav-private.component';
@@ -37,6 +36,10 @@ import { BoardComponent } from './board/board.component';
 // upload images
 import { FileUploadModule } from 'ng2-file-upload';
 import { SearchLocationComponent } from './search-location/search-location.component';
+
+// toastr
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,8 @@ import { SearchLocationComponent } from './search-location/search-location.compo
     HttpModule,
     FileUploadModule,
     RouterModule.forRoot(routes),
+    ToastModule.forRoot(),
+    BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDpW6TUBIPxhP7Zx9zKbv1yCOnbX94b6Qc',
       libraries: ['places']

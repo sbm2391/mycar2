@@ -5,7 +5,7 @@
     <div class="flex-row">
       <div class="container">
         <h5 *ngIf="user._orders.length >= 1" >Your reservations: </h5>
-        <h5 *ngIf="user._orders.length < 1" >You don't have reservations </h5>
+        <h5 *ngIf="user._orders.length < 1" >We don't have any reservations for you!</h5>
         <div *ngFor="let order of user._orders" class="col s12 m6">
             <div class="col s12 m7">
                 <div class="card horizontal">
