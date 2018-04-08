@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../services/session.service';
+declare var jquery:any;   // not required
+declare var $ :any;  
 
 @Component({
   selector: 'app-nav-private',
@@ -12,6 +14,10 @@ export class NavPrivateComponent implements OnInit {
     private session: SessionService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    $(document).ready(function(){
+      ($('.button-collapse')as any).sideNav();
+    });
+  }
 
 }
