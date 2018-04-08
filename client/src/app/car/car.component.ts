@@ -36,7 +36,6 @@ export class CarComponent implements OnInit {
     this.getCars();
     this.getUser();
     this.setMinDate();
-    this.setMaxDate();
   }
 
   getCars() {
@@ -85,17 +84,10 @@ export class CarComponent implements OnInit {
     let currentYear = currentDate.getFullYear();
     let currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
     let currentDay = ('0' + currentDate.getDate()).slice(-2);
+    let nextMonth = ('0' + (currentDate.getMonth() + 2)).slice(-2);
     let currentHours =('0' + currentDate.getHours()).slice(-2);
-    this.minDate = `${currentYear}-${currentMonth}-${currentDay}T${currentHours}:00`
-  }
-
-  setMaxDate(){
-    let currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
-    let currentMonth = ('0' + (currentDate.getMonth() + 2)).slice(-2);
-    let currentDay = ('0' + currentDate.getDate()).slice(-2);
-    let currentHours =('0' + currentDate.getHours()).slice(-2);
-    this.maxDate = `${currentYear}-${currentMonth}-${currentDay}T${currentHours}:00`
+    this.minDate = `${currentYear}-${currentMonth}-${currentDay}T${currentHours}:00`;
+    this.maxDate = `${currentYear}-${ nextMonth}-${currentDay}T${currentHours}:00`;
   }
 
 }
