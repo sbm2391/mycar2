@@ -13,6 +13,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 export class CarComponent implements OnInit {
   @Input() theLat: any;
   @Input() theLng: any;
+  minDate;
+  maxDate;
   cars;
   user;
   maxKm= 3;
@@ -32,8 +34,9 @@ export class CarComponent implements OnInit {
 
   ngOnInit() {
     this.getCars();
-    this. getUser();
-
+    this.getUser();
+    this.setMinDate();
+    this.setMaxDate();
   }
 
   getCars() {
@@ -75,6 +78,24 @@ export class CarComponent implements OnInit {
       this.toastr.success('Succes! Your order has been made');
         setTimeout (() => { this.router.navigate(['orders']); }, 1000);
     })
+  }
+
+  setMinDate(){
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    let currentDay = ('0' + currentDate.getDate()).slice(-2);
+    let currentHours =('0' + currentDate.getHours()).slice(-2);
+    this.minDate = `${currentYear}-${currentMonth}-${currentDay}T${currentHours}:00`
+  }
+
+  setMaxDate(){
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let currentMonth = ('0' + (currentDate.getMonth() + 2)).slice(-2);
+    let currentDay = ('0' + currentDate.getDate()).slice(-2);
+    let currentHours =('0' + currentDate.getHours()).slice(-2);
+    this.maxDate = `${currentYear}-${currentMonth}-${currentDay}T${currentHours}:00`
   }
 
 }

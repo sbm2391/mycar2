@@ -33,10 +33,10 @@
                 <form class="col s12 m12" (ngSubmit)="sendDateForm(myForm, car._id, car.price)" #myForm="ngForm">
                   <div class="row">
                     <div class="input-field col s6 m6">
-                        <input type="datetime-local" placeholder="Pick start date" [(ngModel)]="start-car.index" name="startDate" required>
+                        <input type="datetime-local" placeholder="Pick start date" [(ngModel)]="start-car.index" name="startDate" min="{{minDate}}" max="{{maxDate}}"required>
                     </div>
                       <div class="input-field col s6 m6">
-                          <input type="datetime-local" placeholder="Pick end date" [(ngModel)]="end-car.index" name="endDate" required>
+                          <input type="datetime-local" placeholder="Pick end date" [(ngModel)]="end-car.index" name="endDate" min="{{minDate}}" max="{{maxDate}}" required>
                       </div>
                     </div>
                     <button class="btn waves-effect waves-light" 
