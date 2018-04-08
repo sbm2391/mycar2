@@ -514,7 +514,6 @@ var CarComponent = /** @class */ (function () {
         this.getCars();
         this.getUser();
         this.setMinDate();
-        this.setMaxDate();
     };
     CarComponent.prototype.getCars = function () {
         var _this = this;
@@ -561,16 +560,10 @@ var CarComponent = /** @class */ (function () {
         var currentYear = currentDate.getFullYear();
         var currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
         var currentDay = ('0' + currentDate.getDate()).slice(-2);
+        var nextMonth = ('0' + (currentDate.getMonth() + 2)).slice(-2);
         var currentHours = ('0' + currentDate.getHours()).slice(-2);
         this.minDate = currentYear + "-" + currentMonth + "-" + currentDay + "T" + currentHours + ":00";
-    };
-    CarComponent.prototype.setMaxDate = function () {
-        var currentDate = new Date();
-        var currentYear = currentDate.getFullYear();
-        var currentMonth = ('0' + (currentDate.getMonth() + 2)).slice(-2);
-        var currentDay = ('0' + currentDate.getDate()).slice(-2);
-        var currentHours = ('0' + currentDate.getHours()).slice(-2);
-        this.maxDate = currentYear + "-" + currentMonth + "-" + currentDay + "T" + currentHours + ":00";
+        this.maxDate = currentYear + "-" + nextMonth + "-" + currentDay + "T" + currentHours + ":00";
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
@@ -1526,13 +1519,9 @@ var SessionService = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `angular-cli.json`.
 var environment = {
-    production: false,
-    baseURL: 'http://localhost:3000/'
+    production: true,
+    baseURL: ''
 };
 //# sourceMappingURL=/Users/bet/Documents/ironhack/week8/proyecto3/mycar2/client/src/environment.js.map
 
