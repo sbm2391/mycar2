@@ -335,7 +335,6 @@ var AuthSignupComponent = /** @class */ (function () {
         };
         this.sessionService.signup(newUser)
             .subscribe(function () {
-            // this.router.navigate(['private'])
             _this.toastr.success("Welcome " + newUser.username + "!");
             setTimeout(function () { _this.router.navigate(['private']); }, 500);
         });
@@ -470,7 +469,7 @@ module.exports = ".container-gadges div{\n    margin: 2px;\n}\n.card-image img{\
 /***/ "./src/app/car/car.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-content\">\n    <!-- despliegue de coches -->\n    <p><b>Cars are shown in a {{maxKm}}km radius</b></p>\n    \n    <div *ngFor=\"let car of cars  ; let i=index\">\n      <div class=\"card horizontal\" *ngIf=\"getDistance(car.location.coordinates[0], car.location.coordinates[1]) <= maxKm\">\n        <div class=\"card-image flex-column\">\n          <img class=\"margin-img\" src=\"http://localhost:3000/{{car.img}}\">\n          <p class=\"address\"><strong>{{car.location.address}}</strong></p>\n          <p class=\"address\">({{getDistance(car.location.coordinates[0], car.location.coordinates[1])}} Km)</p>\n        </div>\n        <div class=\"card-stacked\">\n          <div class=\"card-content flex-row\">\n            <div class=\"info-car flex-column\">\n              <div>\n                <span><b>{{car. brand}} </b></span>\n                <span>{{car. model}} </span>\n                <span>({{car.year}}) </span>\n              </div>\n              <div class=\"flex-row container-gadges\">\n                <div *ngFor=\"let gadge of car.gadges\">\n                    <img src=\"http://localhost:3000/{{gadge}}\" alt=\"item car\">\n                </div>\n              </div>\n            </div>\n            <div class=\"info-car\">\n                <p>${{car.price | currency:'MXN'}} / hr</p>\n            </div>\n          </div>\n          <div class=\"card-action\">\n            <div class=\"row\">\n              <p>When do you want to reserve your car?</p>\n                <form class=\"col s12 m12\" (ngSubmit)=\"sendDateForm(myForm, car._id, car.price)\" #myForm=\"ngForm\">\n                  <div class=\"row\">\n                    <div class=\"input-field col s6 m6\">\n                        <input type=\"datetime-local\" placeholder=\"Pick start date\" [(ngModel)]=\"start-car.index\" name=\"startDate\" required>\n                    </div>\n                      <div class=\"input-field col s6 m6\">\n                          <input type=\"datetime-local\" placeholder=\"Pick end date\" [(ngModel)]=\"end-car.index\" name=\"endDate\" required>\n                      </div>\n                    </div>\n                    <button class=\"btn waves-effect waves-light\" \n                 type=\"submit\">Reserve</button>\n                </form>\n              </div>\n          </div>\n        </div>\n      </div><!-- /despliegue de coches -->\n    </div>\n  </div>\n"
+module.exports = "<div class=\"card-content\">\n    <!-- despliegue de coches -->\n    <p><b>Cars are shown in a {{maxKm}}km radius</b></p>\n    \n    <div *ngFor=\"let car of cars  ; let i=index\">\n      <div class=\"card horizontal\" *ngIf=\"getDistance(car.location.coordinates[0], car.location.coordinates[1]) <= maxKm\">\n        <div class=\"card-image flex-column\">\n          <img class=\"margin-img\" src=\"http://localhost:3000/{{car.img}}\">\n          <p class=\"address\"><strong>{{car.location.address}}</strong></p>\n          <p class=\"address\">({{getDistance(car.location.coordinates[0], car.location.coordinates[1])}} Km)</p>\n        </div>\n        <div class=\"card-stacked\">\n          <div class=\"card-content flex-row\">\n            <div class=\"info-car flex-column\">\n              <div>\n                <span><b>{{car. brand}} </b></span>\n                <span>{{car. model}} </span>\n                <span>({{car.year}}) </span>\n              </div>\n              <div class=\"flex-row container-gadges\">\n                <div *ngFor=\"let gadge of car.gadges\">\n                    <img src=\"http://localhost:3000/{{gadge}}\" alt=\"item car\">\n                </div>\n              </div>\n            </div>\n            <div class=\"info-car\">\n                <p>${{car.price | currency:'MXN'}} / hr</p>\n            </div>\n          </div>\n          <div class=\"card-action\">\n            <div class=\"row\">\n              <p>When do you want to reserve your car?</p>\n                <form class=\"col s12 m12\" (ngSubmit)=\"sendDateForm(myForm, car._id, car.price)\" #myForm=\"ngForm\">\n                  <div class=\"row\">\n                    <div class=\"input-field col s12 m6\">\n                        <input type=\"datetime-local\" placeholder=\"Pick start date\" [(ngModel)]=\"start-car.index\" name=\"startDate\" min=\"{{minDate}}\" max=\"{{maxDate}}\"required>\n                    </div>\n                      <div class=\"input-field col s12 m6\">\n                          <input type=\"datetime-local\" placeholder=\"Pick end date\" [(ngModel)]=\"end-car.index\" name=\"endDate\" min=\"{{minDate}}\" max=\"{{maxDate}}\" required>\n                      </div>\n                    </div>\n                    <button class=\"btn waves-effect waves-light\" \n                 type=\"submit\">Reserve</button>\n                </form>\n              </div>\n          </div>\n        </div>\n      </div><!-- /despliegue de coches -->\n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -484,6 +483,8 @@ module.exports = "<div class=\"card-content\">\n    <!-- despliegue de coches --
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_session_service__ = __webpack_require__("./src/app/services/session.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_order_service__ = __webpack_require__("./src/app/services/order.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr__ = __webpack_require__("./node_modules/ng2-toastr/ng2-toastr.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -498,20 +499,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CarComponent = /** @class */ (function () {
-    function CarComponent(carService, sessionService, orderService, router) {
+    function CarComponent(carService, sessionService, orderService, router, toastr, vcr) {
         this.carService = carService;
         this.sessionService = sessionService;
         this.orderService = orderService;
         this.router = router;
-        // lat;
-        // lng;
-        //termina- poner despues padre e hijo
+        this.toastr = toastr;
         this.maxKm = 3;
+        this.toastr.setRootViewContainerRef(vcr);
     }
     CarComponent.prototype.ngOnInit = function () {
         this.getCars();
         this.getUser();
+        this.setMinDate();
+        this.setMaxDate();
     };
     CarComponent.prototype.getCars = function () {
         var _this = this;
@@ -549,8 +552,25 @@ var CarComponent = /** @class */ (function () {
         };
         this.orderService.addItem(newOrder)
             .subscribe(function (order) {
-            _this.router.navigate(['orders']);
+            _this.toastr.success('Succes! Your order has been made');
+            setTimeout(function () { _this.router.navigate(['orders']); }, 1000);
         });
+    };
+    CarComponent.prototype.setMinDate = function () {
+        var currentDate = new Date();
+        var currentYear = currentDate.getFullYear();
+        var currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+        var currentDay = ('0' + currentDate.getDate()).slice(-2);
+        var currentHours = ('0' + currentDate.getHours()).slice(-2);
+        this.minDate = currentYear + "-" + currentMonth + "-" + currentDay + "T" + currentHours + ":00";
+    };
+    CarComponent.prototype.setMaxDate = function () {
+        var currentDate = new Date();
+        var currentYear = currentDate.getFullYear();
+        var currentMonth = ('0' + (currentDate.getMonth() + 2)).slice(-2);
+        var currentDay = ('0' + currentDate.getDate()).slice(-2);
+        var currentHours = ('0' + currentDate.getHours()).slice(-2);
+        this.maxDate = currentYear + "-" + currentMonth + "-" + currentDay + "T" + currentHours + ":00";
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
@@ -566,10 +586,10 @@ var CarComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/car/car.component.html"),
             styles: [__webpack_require__("./src/app/car/car.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_car_service__["a" /* CarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_car_service__["a" /* CarService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_session_service__["a" /* SessionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_session_service__["a" /* SessionService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_order_service__["a" /* OrderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_order_service__["a" /* OrderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_car_service__["a" /* CarService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_car_service__["a" /* CarService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_session_service__["a" /* SessionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_session_service__["a" /* SessionService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_order_service__["a" /* OrderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_order_service__["a" /* OrderService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr__["ToastsManager"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ng2_toastr_ng2_toastr__["ToastsManager"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"]) === "function" && _f || Object])
     ], CarComponent);
     return CarComponent;
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=/Users/bet/Documents/ironhack/week8/proyecto3/mycar2/client/src/car.component.js.map
@@ -869,7 +889,11 @@ var NavPrivateComponent = /** @class */ (function () {
     function NavPrivateComponent(session) {
         this.session = session;
     }
-    NavPrivateComponent.prototype.ngOnInit = function () { };
+    NavPrivateComponent.prototype.ngOnInit = function () {
+        $(document).ready(function () {
+            $('.button-collapse').sideNav();
+        });
+    };
     NavPrivateComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-nav-private',
@@ -920,6 +944,9 @@ var NavPublicComponent = /** @class */ (function () {
     function NavPublicComponent() {
     }
     NavPublicComponent.prototype.ngOnInit = function () {
+        $(document).ready(function () {
+            $('.button-collapse').sideNav();
+        });
     };
     NavPublicComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -939,7 +966,7 @@ var NavPublicComponent = /** @class */ (function () {
 /***/ "./src/app/profile/profile.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "section{\n   min-height: 87vh;\n}\n.profile-height{\n    height: 30vh;\n    padding-top: 20px;\n}\n.image-heigth{\n    height: 25vh;\n    padding: 10px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center; \n    -webkit-box-pack: center; \n        -ms-flex-pack: center; \n            justify-content: center;\n    \n}\n.image-heigth h4 {\n   color: white;\n   margin: 10px;\n}\n.section-padding{\n    padding: 20px;\n}\n.edit-white{\n   color: white;\n   -webkit-text-decoration-line: underline;\n           text-decoration-line: underline;\n   cursor: pointer;\n   font-size: 18px; \n}\n.edit{\n    color: #00897b;\n    -webkit-text-decoration-line: underline;\n            text-decoration-line: underline;\n    cursor: pointer;\n}\n.image-heigth img {\n    width: 100px;\n    height: 100px;\n    border-radius: 50%;\n}\n\n\n"
+module.exports = "section{\n   min-height: 87vh;\n}\n\n.image-heigth{\n    /* height: 25vh; */\n    padding-top: 30px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center; \n    -webkit-box-pack: center; \n        -ms-flex-pack: center; \n            justify-content: center;\n    \n}\n\n.image-heigth h4 {\n   color: white;\n   margin: 10px;\n}\n\n.section-padding{\n    padding: 20px;\n}\n\n.edit-white{\n   color: white;\n   -webkit-text-decoration-line: underline;\n           text-decoration-line: underline;\n   cursor: pointer;\n   font-size: 18px; \n}\n\n.edit{\n    color: #00897b;\n    -webkit-text-decoration-line: underline;\n            text-decoration-line: underline;\n    cursor: pointer;\n}\n\n.image-heigth img {\n    width: 100px;\n    height: 100px;\n    border-radius: 50%;\n}\n\n\n"
 
 /***/ }),
 
@@ -1155,10 +1182,10 @@ var SearchLocationComponent = /** @class */ (function () {
             _this.user = user;
             _this.userAddress = user.location.address;
             _this.userCoordinates = user.location.coordinates;
-            _this.userLocalizacion = { address: _this.userAddress, coordinates: _this.userCoordinates };
+            _this.userLocation = { address: _this.userAddress, coordinates: _this.userCoordinates };
             //determino un valor para que no sea undefine
-            _this.selectedLocation = _this.userLocalizacion;
-            _this.localizacion.push(_this.userLocalizacion);
+            _this.selectedLocation = _this.userLocation;
+            _this.localizacion.push(_this.userLocation);
         });
     };
     SearchLocationComponent.prototype.ngAfterViewInit = function () {
