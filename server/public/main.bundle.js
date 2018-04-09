@@ -269,7 +269,7 @@ var AuthLoginComponent = /** @class */ (function () {
 /***/ "./src/app/auth-signup/auth-signup.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "\n.container {\n   \n    height: 85vh;\n}\n.row{\n    text-align: center;\n}"
+module.exports = "\n.container {\n   \n    min-height: 90vh;\n}\n.row{\n    text-align: center;\n}"
 
 /***/ }),
 
