@@ -432,13 +432,13 @@ var BoardComponent = /** @class */ (function () {
         });
     };
     BoardComponent.prototype.openCheckout = function (order) {
-        var _this = this;
-        order.paid = true;
         var handler = window.StripeCheckout.configure({
             key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
             locale: 'auto',
             token: function (token) {
                 console.log(token);
+                order.paid = true;
+                this.newOrder = order;
             }
         });
         console.log(handler);
@@ -447,11 +447,6 @@ var BoardComponent = /** @class */ (function () {
             description: 'Payment',
             amount: order.total * 100
         });
-        var that = this;
-        setTimeout(function () {
-            _this.patchOrder(that.newOrder);
-        }, 60000);
-        this.patchOrder(order);
     };
     BoardComponent.prototype.patchOrder = function (order) {
         this.orderService.patchItem(order)
