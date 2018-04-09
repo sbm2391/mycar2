@@ -392,7 +392,7 @@ module.exports = ".section-padding{\n    padding: 20px;\n    min-height: 87vh;\n
 /***/ "./src/app/board/board.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav-private></app-nav-private>\n<!-- <p *ngIf=\"user\">{{user | json}}</p> -->\n\n<section *ngIf=\"user\" class=\"section-padding #eeeeee grey lighten-3\">\n    <div class=\"flex-row\">\n      <div class=\"container\">\n        <h5 *ngIf=\"user._orders.length >= 1\" >Your reservations: </h5>\n        <h5 *ngIf=\"user._orders.length < 1\" >We don't have any reservations for you!</h5>\n        <div *ngFor=\"let order of user._orders\" class=\"col s12 m6\">\n            <div class=\"col s12 m7\">\n                <div class=\"card horizontal\">\n                    <div class=\"card-image flex-column\">\n                      <img class=\"margin-img\" src=\"http://localhost:3000/{{order._car.img}}\">\n                    </div>\n                  <div class=\"card-stacked\">\n                    <div class=\"card-content\">\n                      <p><b>Car information: </b></p>\n                        <div>\n                          <span><b>{{order._car.brand}} </b></span>\n                          <span>{{order._car.model}} </span>\n                          <span>({{order._car.year}}) </span>\n                        </div>\n                        <div>\n                        <p><b>Your reservation information: </b></p>\n                        <p><b>Car location:</b> {{order._car.location.address}}</p>\n                        </div>  \n                    </div>\n                    <div class=\"card-content\">\n                      <div class=\"billing\">\n                        <div class=\"flex-row\">\n                          <div>\n                            <p ><b>Billing: </b></p>\n                            <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>\n                            <p class=\"address\" *ngIf=\"order.hour === 1\" ><b>Total hour: </b>{{order.hour}}hr</p>\n                            <p class=\"address\" *ngIf=\"order.hour !== 1\" ><b>Total hours: </b>{{order.hour}}hrs</p>\n                            <p class=\"address\"><b>Total to pay: </b>{{order.total | currency:'MXN'}}</p>\n                          </div>\n                          <div *ngIf=\"order.paid == false\" class=\"info\">\n                              <button class=\"btn waves-effect waves-light\" (click)=\"openCheckout(order)\">Pay</button>\n                          </div>\n                        </div>\n                        \n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>          \n        </div>  \n      </div>\n    </div>\n  </section>\n  <app-footer></app-footer>"
+module.exports = "<app-nav-private></app-nav-private>\n<!-- <p *ngIf=\"user\">{{user | json}}</p> -->\n\n<section *ngIf=\"user\" class=\"section-padding #eeeeee grey lighten-3\">\n    <div class=\"flex-row\">\n      <div class=\"container\">\n        <h5 *ngIf=\"user._orders.length >= 1\" >Your reservations: </h5>\n        <h5 *ngIf=\"user._orders.length < 1\" >We don't have any reservations for you!</h5>\n        <div *ngFor=\"let order of user._orders\" class=\"col s12 m6\">\n            <div class=\"col s12 m7\">\n                <div class=\"card horizontal\">\n                    <div class=\"card-image flex-column\">\n                      <img class=\"margin-img\" src=\"http://localhost:3000/{{order._car.img}}\">\n                    </div>\n                  <div class=\"card-stacked\">\n                    <div class=\"card-content\">\n                      <p><b>Car information: </b></p>\n                        <div>\n                          <span><b>{{order._car.brand}} </b></span>\n                          <span>{{order._car.model}} </span>\n                          <span>({{order._car.year}}) </span>\n                        </div>\n                        <div>\n                        <p><b>Your reservation information: </b></p>\n                        <p><b>Car location:</b> {{order._car.location.address}}</p>\n                        </div>  \n                    </div>\n                    <div class=\"card-content\">\n                      <div class=\"billing\">\n                        <div class=\"flex-row\">\n                          <div>\n                            <p ><b>Billing: </b></p>\n                            <p>Reservation from {{order.startDate | date:'short'}} to {{order.endDate | date:'short'}}</p>\n                            <p class=\"address\" *ngIf=\"order.hour === 1\" ><b>Total hour: </b>{{order.hour}}hr</p>\n                            <p class=\"address\" *ngIf=\"order.hour !== 1\" ><b>Total hours: </b>{{order.hour}}hrs</p>\n                            <p class=\"address\"><b>Total to pay: </b>{{order.total | currency:'MXN'}}</p>\n                          </div>\n                          <div *ngIf=\"order.paid == false\" class=\"info\">\n                              <button class=\"btn #e57373 red lighten-2 waves-effect waves-light\" (click)=\"openCheckout(order)\">Pay</button>\n                          </div>\n                          <div *ngIf=\"order.paid == true\" class=\"info\">\n                            <div class=\"waves-effect waves-light btn\"><i class=\"material-icons left\">check_circle</i>Paid</div>\n                        </div>\n                        </div>\n                        \n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>          \n        </div>  \n      </div>\n    </div>\n  </section>\n  <app-footer></app-footer>"
 
 /***/ }),
 
@@ -403,6 +403,7 @@ module.exports = "<app-nav-private></app-nav-private>\n<!-- <p *ngIf=\"user\">{{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BoardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_session_service__ = __webpack_require__("./src/app/services/session.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_order_service__ = __webpack_require__("./src/app/services/order.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -414,9 +415,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var BoardComponent = /** @class */ (function () {
-    function BoardComponent(sessionService) {
+    function BoardComponent(sessionService, orderService) {
         this.sessionService = sessionService;
+        this.orderService = orderService;
     }
     BoardComponent.prototype.ngOnInit = function () {
         this.getUser();
@@ -429,18 +432,30 @@ var BoardComponent = /** @class */ (function () {
         });
     };
     BoardComponent.prototype.openCheckout = function (order) {
+        var _this = this;
+        order.paid = true;
         var handler = window.StripeCheckout.configure({
             key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
             locale: 'auto',
             token: function (token) {
-                // You can access the token ID with `token.id`.
-                // Get the token ID to your server-side code for use.
+                console.log(token);
             }
         });
+        console.log(handler);
         handler.open({
             name: 'MyCar',
             description: 'Payment',
             amount: order.total * 100
+        });
+        var that = this;
+        setTimeout(function () {
+            _this.patchOrder(that.newOrder);
+        }, 60000);
+        this.patchOrder(order);
+    };
+    BoardComponent.prototype.patchOrder = function (order) {
+        this.orderService.patchItem(order)
+            .subscribe(function (order) {
         });
     };
     BoardComponent = __decorate([
@@ -449,10 +464,10 @@ var BoardComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/board/board.component.html"),
             styles: [__webpack_require__("./src/app/board/board.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_session_service__["a" /* SessionService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_order_service__["a" /* OrderService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_order_service__["a" /* OrderService */]) === "function" && _b || Object])
     ], BoardComponent);
     return BoardComponent;
-    var _a;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=/Users/bet/Documents/ironhack/week8/proyecto3/mycar2/client/src/board.component.js.map
@@ -1309,6 +1324,15 @@ var OrderService = /** @class */ (function () {
     OrderService.prototype.handleError = function (e) {
         return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["a" /* Observable */].throw(e.json().message);
     };
+    OrderService.prototype.patchItem = function (item) {
+        return this.http.patch(this.base_URL + "/order/" + item._id, item, this.options)
+            .map(function (res) { return res.json(); })
+            .map(function (item) { return item; })
+            .catch(function (e) {
+            console.log(e);
+            return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["a" /* Observable */].throw(e);
+        });
+    };
     OrderService.prototype.addItem = function (item) {
         var _this = this;
         return this.http.post(this.base_URL + "/order", item, this.options)
@@ -1319,15 +1343,6 @@ var OrderService = /** @class */ (function () {
         return this.http.get(this.base_URL + "/order")
             .map(function (res) { return res.json(); })
             .map(function (items) { return items; })
-            .catch(function (e) {
-            console.log(e);
-            return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["a" /* Observable */].throw(e);
-        });
-    };
-    OrderService.prototype.patchItem = function (item) {
-        return this.http.patch(this.base_URL + "/order/" + item._id, item)
-            .map(function (res) { return res.json(); })
-            .map(function (item) { return item; })
             .catch(function (e) {
             console.log(e);
             return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["a" /* Observable */].throw(e);
