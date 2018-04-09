@@ -17,8 +17,6 @@ const userSchema = new Schema({
       default:[19.3978285, -99.1729289]}
   },
   card              : {
-    name            : {type: String},
-    type            : {type: String},
     number          : {type: Number},
     deadline        : {type: Date},
     cvv             : {type: Number}

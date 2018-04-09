@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { SessionService } from '../services/session.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-board',
@@ -9,8 +10,13 @@ import { SessionService } from '../services/session.service';
 export class BoardComponent implements OnInit {
 user;
 userId;
+newOrder;
 
-  constructor(private sessionService: SessionService) { }
+
+  constructor(
+    private sessionService: SessionService,
+    private orderService: OrderService
+  ) { }
 
   ngOnInit() {
 
@@ -26,13 +32,16 @@ userId;
   }
 
   openCheckout(order) {
+   
     var handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_oi0sKPJYLGjdvOXOM8tE8cMa',
       locale: 'auto',
       token: function (token: any) {
-        // You can access the token ID with `token.id`.
-        // Get the token ID to your server-side code for use.
+      console.log(token);
+      order.paid = true;
+      this.newOrder = order;
       }
+  
     });
 
     handler.open({
@@ -40,7 +49,18 @@ userId;
       description: 'Payment',
       amount: order.total * 100
     });
+  }
+  
+  @HostListener('window:popstate') onpopstate(){
+    console.log("hola")
+  }
 
+     patchOrder(order){
+    this.orderService.patchItem(order)
+    .subscribe((order) => {
+      console.log("=====>")
+      console.log(order)
+    });
   }
 
 }
