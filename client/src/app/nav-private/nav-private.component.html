@@ -2,19 +2,19 @@
 <nav class="#fafafa grey lighten-5" role="navigation">
   <div class="nav-wrapper container">
     <img class="logo" src="../../assets/images/mycarlogo.png" alt="mycar logo">
-    <a id="logo-container" href="#" class="brand-logo">MyCar</a>
+    <a id="logo-container" class="brand-logo">MyCar</a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="/private">Home</a></li>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="/orders">My stats</a></li>
-      <li><a (click)="showSuccess()" href="/logout">Log out</a></li>
+      <li><a [routerLink]="['/private']">Home</a></li>
+      <li><a [routerLink]="['/profile']">Profile</a></li>
+      <li><a [routerLink]="['/orders']">My stats</a></li>
+      <li><a (click)="showSuccess()" [routerLink]="['/logout']">Log out</a></li>
     </ul>
     <ul id="nav-mobile" class="side-nav">
-      <li><a href="/private">Home</a></li>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="/orders">My stats</a></li>
-      <li><a (click)="showSuccess()" href="/logout">Log out</a></li>
+      <li><a [routerLink]="['/private']">Home</a></li>
+      <li><a [routerLink]="['/profile']">Profile</a></li>
+      <li><a [routerLink]="['/orders']">My stats</a></li>
+      <li><a (click)="showSuccess()" [routerLink]="['/logout']">Log out</a></li>
     </ul>
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    <a data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>
 </nav><!-- /nav -->
